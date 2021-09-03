@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ProdutoController extends Controller
 {
    public function index(){
-       $produtos = Produto::get();
+       $produtos = Produto::all();
 
        return \view('admin.produtos.index', ['produtos', $produtos]);
     }
