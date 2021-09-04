@@ -7,10 +7,17 @@
  - Karina
  - Pedro
 
- ### Participação especial
+### Participação especial
 - Professor Fábio Abenza
 
 ## Laravel Framework
+### Inicialização
+- npm install
+- php artisan serve
+
+### Possíveis problemas
+- Artisan não funciona: execute o comando **_composer update --no-scripts_**  
+referencia <a>https://stackoverflow.com/questions/29764368/fatal-error-class-illuminate-foundation-application-not-found</a>
 ## Code of Conduct
 
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
