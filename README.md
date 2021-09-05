@@ -13,7 +13,10 @@
 ## Laravel Framework
 ### Inicialização
 - npm install
+- copie o arquivo _.env.example_, renomeie a copia para **_.env_** e preencha os valores destinados ao seu database
+- php artisan migrate
 - php artisan serve
+- **Atenção** somente se necessário (execute php artisan key:generate)
 
 ### Possíveis problemas
 - Artisan não funciona: execute o comando **_composer update --no-scripts_**  
