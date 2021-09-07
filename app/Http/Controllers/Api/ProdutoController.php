@@ -19,32 +19,40 @@ class ProdutoController extends Controller
     public function store(Request $request)
     {
         $campos = $request->validate([
-            'nome' => 'required|string|unique:produtos,nome',
-            'descricao' => 'required|string',
-            'preco' => 'required',
+            'nm_produto' => 'required|string|unique:produtos,nm_produto',
+            'desc_produto' => 'required|string',
+            'vl_produto' => 'required',
+            'qtd_produto' => 'required',
+            'id_categoria' => 'required',
         ]);
 
         $produto = Produto::create([
-            'nome' => $campos['nome'],
-            'descricao' => $campos['descricao'],
-            'preco' => $campos['preco'],
+            'nm_produto' => $campos['nm_produto'],
+            'desc_produto' => $campos['desc_produto'],
+            'vl_produto' => $campos['vl_produto'],
+            'qtd_produto' => $campos['qtd_produto'],
+            'id_categoria' => $campos['id_categoria'],
         ]);
 
         if(empty($produto)){
                 return response()->json(['message' => 'Falha ao criar produto'], 406);
         }
 
-        return response()->json(['message' => 'Produto '.$produto->nome.' criado com sucesso'], 200);
+        return response()->json(['message' => 'Produto '.$produto->nm_produto.' criado com sucesso'], 200);
     }
 
     public function show($id)
     {
-        return response()->json(Produto::findOrFail($id), 200);
+        $produto = Produto::findOrFail($id);
+
+        $categoria = $produto->categoria()->first();
+
+        return response()->json(['produto' => $produto, 'categoria' => $categoria->nm_categoria], 200);
     }
 
     public function search($s)
     {
-        $produtos = Produto::where('nome', 'like', '%'.$s.'%')->get();
+        $produtos = Produto::where('nm_produto', 'like', '%'.$s.'%')->get();
 
         return response()->json($produtos, 200);
     }
@@ -52,42 +60,49 @@ class ProdutoController extends Controller
     public function update(Request $request, $id)
     {
         $produto = Produto::findOrFail($id);
+        $campos;
 
-        if($produto->nome == $request->nome){
+        if($produto->nm_produto == $request->nm_produto){
             $campos = $request->validate([
-                'descricao' => 'required|string',
-                'preco' => 'required',
+                'desc_produto' => 'required|string',
+                'vl_produto' => 'required',
+                'id_categoria' => 'required',
             ]);
         } else {
             $campos = $request->validate([
-                'nome' => 'required|string|unique:produtos,nome',
-                'descricao' => 'required|string',
-                'preco' => 'required',
+                'nm_produto' => 'required|string|unique:produtos,nome',
+                'desc_produto' => 'required|string',
+                'vl_produto' => 'required',
+                'id_categoria' => 'required',
             ]);
         }
 
-        $produto->update($request->all());
+        $produto->update($campos->all());
 
         return response()->json(['message' => 'Produto atualizado com sucesso'], 200);
     }
 
     public function destroy($id)
     {
-        $produto = Produto::findOrFail($id);
-        $novo_status;
-        $alteracao;
+        /* ****************************
+            Falta definir metodo
 
-        if($produto->status == 'A'){
-            $novo_status = 'I';
-            $alteracao = 'inativado';
-        } else {
-            $novo_status = 'A';
-            $alteracao = 'ativado';
-        }
-        $produto->update([
-            'status' => $novo_status,
-        ]);
+        ******************************* */
+        // $produto = Produto::findOrFail($id);
+        // $novo_status;
+        // $alteracao;
 
-        return response()->json(['message' => 'Produto '.$alteracao. ' com sucesso'], 200);
+        // if($produto->status == 'A'){
+        //     $novo_status = 'I';
+        //     $alteracao = 'inativado';
+        // } else {
+        //     $novo_status = 'A';
+        //     $alteracao = 'ativado';
+        // }
+        // $produto->update([
+        //     'status' => $novo_status,
+        // ]);
+
+        // return response()->json(['message' => 'Produto '.$alteracao. ' com sucesso'], 200);
     }
 }
