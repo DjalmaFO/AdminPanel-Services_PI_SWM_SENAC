@@ -14,10 +14,12 @@ class ProdutoController extends Controller
        return \view('admin.produtos.index', ['produtos', $produtos]);
     }
 
-    public function find($p){
-        $produtos = DB::select('select * from produtos where nome like ?', [`%${$p}%`]);
+    public function show($id){
+        $produto = Produto::findOrFail($id);
 
-        return \view('admin.produtos.index', ['produtos', $produtos]);
+        $produto = DB::where('id', $id)->first();
+
+        return \view('admin.produtos.show', ['produto', $produto]);
    }
 
    public function criar(){
