@@ -1,4 +1,5 @@
--- use geek_style;
+-- 
+use geek_style;
 
 insert into categorias(nm_categoria) values ('Categoria 1');
 

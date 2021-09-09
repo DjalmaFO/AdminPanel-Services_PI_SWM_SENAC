@@ -70,39 +70,35 @@ class ProdutoController extends Controller
             ]);
         } else {
             $campos = $request->validate([
-                'nm_produto' => 'required|string|unique:produtos,nome',
+                'nm_produto' => 'required|string|unique:produtos,nm_produto',
                 'desc_produto' => 'required|string',
                 'vl_produto' => 'required',
                 'id_categoria' => 'required',
             ]);
         }
 
-        $produto->update($campos->all());
+        $produto->update($request->all());
 
         return response()->json(['message' => 'Produto atualizado com sucesso'], 200);
     }
 
     public function destroy($id)
     {
-        /* ****************************
-            Falta definir metodo
+        $produto = Produto::findOrFail($id);
+        $novo_status;
+        $alteracao;
 
-        ******************************* */
-        // $produto = Produto::findOrFail($id);
-        // $novo_status;
-        // $alteracao;
+        if($produto->status == 'A'){
+            $novo_status = 'I';
+            $alteracao = 'inativado';
+        } else {
+            $novo_status = 'A';
+            $alteracao = 'ativado';
+        }
+        $produto->update([
+            'status' => $novo_status,
+        ]);
 
-        // if($produto->status == 'A'){
-        //     $novo_status = 'I';
-        //     $alteracao = 'inativado';
-        // } else {
-        //     $novo_status = 'A';
-        //     $alteracao = 'ativado';
-        // }
-        // $produto->update([
-        //     'status' => $novo_status,
-        // ]);
-
-        // return response()->json(['message' => 'Produto '.$alteracao. ' com sucesso'], 200);
+        return response()->json(['message' => 'Produto '.$alteracao. ' com sucesso'], 200);
     }
 }
