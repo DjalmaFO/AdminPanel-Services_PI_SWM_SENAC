@@ -1,6 +1,6 @@
 <h1>Produtos</h1>
 <ul>
     @foreach ($produtos as $produto)
-    <li>{{$produto->nome}}</li>
+    <li>{{$produto->nm_produto}}</li>
     @endforeach
 </ul>
