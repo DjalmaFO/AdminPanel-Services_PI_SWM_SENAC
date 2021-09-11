@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class ProdutoController extends Controller
    }
 
    public function create(){
-       return \view('admin.produtos.create');
+       return \view('admin.produtos.create')->with('categorias', Categoria::all());
    }
 
    public function store(Request $request){
@@ -42,7 +43,7 @@ class ProdutoController extends Controller
    }
 
    public function edit($id){
-        return \view('admin.produtos.edit')->with('produto', Produto::findOrFail($id));
+        return \view('admin.produtos.edit')->with(['produto' => Produto::findOrFail($id), 'categorias' => Categoria::all()]);
    }
 
    public function update(Request $request, $id){
@@ -78,7 +79,7 @@ class ProdutoController extends Controller
      } else {
          $novo_status = 'A';
      }
-     
+
      $produto->update([
          'status' => $novo_status,
      ]);
