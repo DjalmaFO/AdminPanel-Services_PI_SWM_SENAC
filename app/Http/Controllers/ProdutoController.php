@@ -38,7 +38,7 @@ class ProdutoController extends Controller
           'qtd_produto' => $campos['qtd_produto'],
           'id_categoria' => $campos['id_categoria'],
       ]);
-
+      session()->flash('success', 'Produto foi cadastrado com sucesso');
       return view('admin.produtos.index')->with('produtos', Produto::all());
    }
 
@@ -66,24 +66,26 @@ class ProdutoController extends Controller
      }
 
      $produto->update($request->all());
-
+     session()->flash('success', 'Produto foi alterado com sucesso');
      return view('admin.produtos.index')->with('produtos', Produto::all());
    }
 
    public function destroy($id){
-     $produto = Produto::findOrFail($id);
-     $novo_status;
+    $produto = Produto::findOrFail($id);
+    $novo_status;
 
-     if($produto->status == 'A'){
-         $novo_status = 'I';
-     } else {
-         $novo_status = 'A';
-     }
+    if($produto->status == 'A'){
+        $novo_status = 'I';
+    } else {
+        $novo_status = 'A';
+    }
 
-     $produto->update([
-         'status' => $novo_status,
-     ]);
-
-     return view('admin.produtos.index')->with('produtos', Produto::all());
+    $produto->update([
+        'status' => $novo_status,
+    ]);
+    
+    $produto->delete();
+    session()->flash('success', 'Produto foi apagado com sucesso');
+    return view('admin.produtos.index')->with('produtos', Produto::all());
    }
 }
