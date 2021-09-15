@@ -26,7 +26,7 @@ class ProdutoController extends Controller
      $campos = $request->validate([
           'nm_produto' => 'required|string|unique:produtos,nm_produto',
           'desc_produto' => 'required|string',
-          'vl_produto' => 'required',
+          'vl_produto' => 'required', 
           'qtd_produto' => 'required',
           'id_categoria' => 'required',
       ]);

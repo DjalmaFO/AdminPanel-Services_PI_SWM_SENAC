@@ -16,10 +16,10 @@
         <div class="row">
             <div class="col-6 text-center">
                 <h2>{{$produto->nm_produto}}</h2>
-                <p>{{ $produto->desc_produto }}</p>
+                <p>{{ $produto->desc_produto }}</p> 
                 <span class="h4 d-block">R$ {{$produto->vl_produto}}</span>
                 <span class="h4 d-block">{{$produto->qtd_produto}}</span>
-                <button class="btn btn-primary">Adicionar no Carrinho</button>
+                <button class="btn btn-primary">Adicionar no Carrinho</button> 
             </div>
         </div>
     </main>

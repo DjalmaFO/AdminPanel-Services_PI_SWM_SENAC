@@ -36,8 +36,8 @@
                         <td>{{$produto->id}}</td>
                         <td>{{$produto->nm_produto}}</td>
                         <td>{{$produto->desc_produto}}</td>
-                        <td>{{$produto->vl_produto}}</td>
-                        <td>{{$produto->qtd_produto}}</td>
+                        <td>{{$produto->vl_produto}}</td> 
+                        <td>{{$produto->qtd_produto}}</td> 
 
                         <td>
                             <a href="{{ Route('adm.produto.show', $produto->id) }}" class="btn btn-sm btn-success">Visualizar</a>

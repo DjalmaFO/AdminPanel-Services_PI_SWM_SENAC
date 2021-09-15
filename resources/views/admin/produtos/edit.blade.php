@@ -17,11 +17,11 @@
             <span class="form-label">Descrição</span>
             <textarea class="form-control" name="desc_produto">{{$produto->desc_produto}}</textarea>
         </div>
-        <div class="row">
+        <div class="row"> 
             <span class="form-label">Preço</span>
             <input type="number" min="0.00" max="1000.00" name="vl_produto" step="0.01" value="{{$produto->vl_produto}}" class="form-control">
         </div>
-        <div class="row">
+        <div class="row"> 
             <span class="form-label">Quantidade</span>
             <input type="number" min="0" max="1000" name="vl_produto" step="0.01" class="form-control" value="{{$produto->qtd_produto}}">
         </div>

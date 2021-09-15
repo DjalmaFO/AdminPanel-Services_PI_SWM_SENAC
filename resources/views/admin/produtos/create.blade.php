@@ -17,13 +17,13 @@
             <span class="form-label">Descrição</span>
             <textarea class="form-control" name="desc_produto"></textarea>
         </div>
-        <div class="row">
+        <div class="row"> 
             <span class="form-label">Preço</span>
             <input type="number" min="0.00" max="1000.00" name="vl_produto" step="0.01" class="form-control">
         </div>
         <div class="row">
             <span class="form-label">Quantidade</span>
-            <input type="text" name="qtd_produto" class="form-control">
+            <input type="text" name="qtd_produto" class="form-control"> 
         </div>
         <div class="row"> 
             <span class="form-label">Categoria</span>
