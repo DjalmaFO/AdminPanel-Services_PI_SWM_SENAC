@@ -37,6 +37,7 @@ Route::get('/produtos/procurar/{s}', [ProdutoController::class, 'search']);
 // Categorias
 Route::get('/categorias', [CategoriaController::class, 'index']);
 Route::get('/produtos/categoria/{id}', [CategoriaController::class, 'produtosPorCategoria']);
+Route::get('/categoria/{id}', [CategoriaController::class, 'show']);
 
 // Rotas protegidas
 Route::group(['middleware' => ['auth:sanctum']], function () {
@@ -51,5 +52,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     
     // Categorias
     Route::post('/categoria', [CategoriaController::class, 'store']);
+    Route::put('/categoria/{id}', [CategoriaController::class, 'update']);
+    Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy']);
 
 });
