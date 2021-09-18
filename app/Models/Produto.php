@@ -16,6 +16,7 @@ class Produto extends Model
         'vl_produto',
         'id_categoria',
         'qtd_produto',
+        'img_produto',
     ];
 
     public function categoria(){

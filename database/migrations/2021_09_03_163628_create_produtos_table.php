@@ -20,6 +20,7 @@ class CreateProdutosTable extends Migration
             $table->decimal('vl_produto', 10, 2);
             $table->integer('qtd_produto');
             $table->integer('id_categoria');
+            $table->text('img_produto');
             $table->timestamps();
         });
     }
