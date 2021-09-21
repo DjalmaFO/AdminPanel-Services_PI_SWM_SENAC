@@ -44,18 +44,19 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Usuários
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    
+
     // Produtos
     Route::post('/produto', [ProdutoController::class, 'store']);
     Route::put('/produto/{id}', [ProdutoController::class, 'update']);
     Route::delete('/produto/{id}', [ProdutoController::class, 'destroy']);
-    
+
     // Categorias
     Route::post('/categoria', [CategoriaController::class, 'store']);
 
     //Carrinho
-    Route::get('/carrinho', [AuthController::class, 'carrinho']);
-    Route::get('/produtos/carrinho', [TbCarrinhoController::class, 'index']);
+    Route::get('/carrinho', [TbCarrinhoController::class, 'carrinho']);
     Route::post('/carrinho', [TbCarrinhoController::class, 'store']);
-
+    Route::get('/produtos/carrinho', [TbCarrinhoController::class, 'index']);
+    Route::delete('/produtos/carrinho', [TbCarrinhoController::class, 'destroy']);
+    Route::delete('/produto/carrinho/{id}', [TbCarrinhoController::class, 'excluirProdutoCarrinho']);
 });

@@ -10,30 +10,18 @@ use App\Models\Produto;
 
 class TbCarrinhoController extends Controller
 {
-    public function criarCarrinho() {
-        $idUser = auth()->user()->id;
-        $carrinho = TbCarrinho::create([
-            'id_user' => $idUser,
-        ]);
-
-        return $carrinho;
-    }
-
     public function index()
     {
         $carrinho = auth()->user()->getCarrinho()->first();
-        
+
         if(empty($carrinho)){
-            $idUser = auth()->user()->id;
-            $carrinho = TbCarrinho::create([
-                'id_user' => $idUser,
-            ]);
+            $carrinho = $this->criarCarrinho();
         }
 
         $produtos = $carrinho->getProdutos()->get();
 
-        if(empty($produtos)){
-            return response()->json(['msg' => 'Ops, carrinho vazio :( '], 200, $headers);
+        if(sizeof($produtos) == 0){
+            return response()->json(['msg' => 'Ops, carrinho vazio :( '], 200);
         }
 
         $arrayProdutos = [];
@@ -55,20 +43,11 @@ class TbCarrinhoController extends Controller
         return response()->json($arrayProdutos, 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $carrinho = auth()->user()->getCarrinho()->first();
         if(empty($carrinho)){
-            $idUser = auth()->user()->id;
-            $carrinho = TbCarrinho::create([
-                'id_user' => $idUser,
-            ]);
+            $carrinho = $this->criarCarrinho();
         }
 
         $validado = $request->validate([
@@ -76,48 +55,76 @@ class TbCarrinhoController extends Controller
             'qtd_produto' => 'required|integer',
         ]);
 
-        $c = TbProdutoCarrinho::create([
-            'id_carrinho' => $carrinho->id,
-            'id_produto' => $validado['id_produto'],
-            'qtd_produto' => $validado['qtd_produto'],
+        $produto = Produto::findOrFail($validado['id_produto']);
+        $produtoCarrinho = TbProdutoCarrinho::where([['id_produto', '=', $validado['id_produto']], ['id_carrinho', '=', $carrinho->id]])->first();
+
+        if(empty($produtoCarrinho)){
+            TbProdutoCarrinho::create([
+                'id_carrinho' => $carrinho->id,
+                'id_produto' => $validado['id_produto'],
+                'qtd_produto' => $validado['qtd_produto'],
+            ]);
+        } else {
+            if ($validado['qtd_produto'] < 0 && $produtoCarrinho->qtd_produto <= $validado['qtd_produto'] * -1) {
+                $resp = $this->excluirProdutoCarrinho($validado['id_produto']);
+                return \response()->json($resp->original, 200);
+            } else {
+                TbProdutoCarrinho::where([
+                    ['id_produto', '=', $validado['id_produto']], ['id_carrinho', '=', $carrinho->id]
+                ])->update([
+                    'qtd_produto' => ($validado['qtd_produto'] + $produtoCarrinho->qtd_produto),
+                ]);
+            }
+        }
+
+        return response()->json(['msg' => 'Produto '.$produto->nm_produto.' adicionado ao carrinho sucesso'], 200);
+    }
+
+
+    public function destroy()
+    {
+        $carrinho = auth()->user()->getCarrinho()->first();
+
+        if(empty($carrinho)){
+            return \response()->json(['msg' => 'Não há carrinho para ser esvaziado'], 404);
+        }
+
+        TbProdutoCarrinho::where('id_carrinho', $carrinho->id)->delete();
+
+        return \response()->json(['msg' => 'Carrinho esvaziado com sucesso']);
+    }
+
+    public function excluirProdutoCarrinho($id){
+        $carrinho = auth()->user()->getCarrinho()->first();
+        $produtoCarrinho = TbProdutoCarrinho::where([['id_produto','=', $id], ['id_carrinho', '=', $carrinho->id]])->first();
+
+        if(empty($produtoCarrinho) || empty($carrinho)){
+            return \response()->json(['msg' => 'Produto ou carrinho inexistente'], 404);
+        }
+
+        TbProdutoCarrinho::where([['id_produto', '=', $id], ['id_carrinho', '=', $carrinho->id]])->delete();
+
+        return \response()->json(['msg' => 'Produto removido do carrinho :('], 200);
+    }
+
+    public function criarCarrinho()
+    {
+        $idUser = auth()->user()->id;
+        $carrinho = TbCarrinho::create([
+            'id_user' => $idUser,
         ]);
 
-
-
-        return response()->json($c, 200);
+        return $carrinho;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function carrinho()
     {
-        //
-    }
+        $carrinho = auth()->user()->getCarrinho()->first();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        if (empty($carrinho)) {
+            $carrinho = $this->criarCarrinho();
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        return response()->json($carrinho, 200);
     }
 }

@@ -40,7 +40,7 @@ class AuthController extends Controller
             'senha' => 'required|string',
         ]);
 
-        // Verifica o email 
+        // Verifica o email
         $user = User::where('email', $campos['email'])->first();
 
         // Verifica a senha
@@ -51,21 +51,5 @@ class AuthController extends Controller
         $token = $user->createToken('myapptoken')->plainTextToken;
 
         return response()->json(['user' => $user, 'token' => $token], 201);
-    }
-
-    public function carrinho(){
-        $carrinho = auth()->user()->getCarrinho()->first();
-        
-        if(empty($carrinho)){
-            $idUser = auth()->user()->id;
-            $carrinho = TbCarrinho::create([
-                'id_user' => $idUser,
-            ]);
-
-            return response()->json($carrinho, 200);
-        }
-
-
-        return response()->json($carrinho, 200);
     }
 }
