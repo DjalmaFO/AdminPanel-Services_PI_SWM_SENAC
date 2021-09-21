@@ -19,8 +19,8 @@ class CreateProdutosTable extends Migration
             $table->text('desc_produto', 500);
             $table->decimal('vl_produto', 10, 2);
             $table->integer('qtd_produto');
-            $table->integer('id_categoria');
-            $table->text('img_produto');
+            $table->integer('id_categoria')->references('categorias')->on('id');
+            $table->text('img_produto')->nullable();
             $table->timestamps();
         });
     }

@@ -1,6 +1,8 @@
 -- 
 use geek_style;
 
+-- create database  geek_style;
+
 insert into categorias(nm_categoria) values ('Categoria 1');
 
 insert into categorias(nm_categoria) values ('Categoria 2');
@@ -24,3 +26,5 @@ select
     c.nm_categoria categoria
 from produtos p
 left join categorias c on c.id = p.id_categoria
+
+select * from tb_produto_carrinhos;

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\Api\CategoriaController;
+use App\Http\Controllers\Api\TbCarrinhoController;
 use App\Http\Controllers\AuthController;
 
 
@@ -51,5 +52,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     
     // Categorias
     Route::post('/categoria', [CategoriaController::class, 'store']);
+
+    //Carrinho
+    Route::get('/carrinho', [AuthController::class, 'carrinho']);
+    Route::get('/produtos/carrinho', [TbCarrinhoController::class, 'index']);
+    Route::post('/carrinho', [TbCarrinhoController::class, 'store']);
 
 });
