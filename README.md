@@ -14,7 +14,9 @@
 ### Inicialização
 - npm install
 - copie o arquivo _.env.example_, renomeie a copia para **_.env_** e preencha os valores destinados ao seu database
+- dentro do **_.env_** altere o valor da variável **_FILESYSTEM_DRIVER_** para public 
 - php artisan migrate
+- php artisan storage:link
 - php artisan serve
 - **Atenção** somente se necessário (execute php artisan key:generate)
 

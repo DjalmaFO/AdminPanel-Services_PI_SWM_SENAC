@@ -26,7 +26,7 @@ class ProdutoController extends Controller
      $campos = $request->validate([
           'nm_produto' => 'required|string|unique:produtos,nm_produto',
           'desc_produto' => 'required|string',
-          'vl_produto' => 'required', 
+          'vl_produto' => 'required',
           'qtd_produto' => 'required',
           'id_categoria' => 'required',
       ]);
@@ -37,7 +37,17 @@ class ProdutoController extends Controller
           'vl_produto' => $campos['vl_produto'],
           'qtd_produto' => $campos['qtd_produto'],
           'id_categoria' => $campos['id_categoria'],
-      ]);
+        ]);
+
+        // upload de Imagem
+        if($request->hasFile('img_produto') && $request->file('img_produto')->isValid()){
+            $caminhoImagem = $request->file('img_produto')->store('img/produtos');
+
+            Produto::where('id', $produto->id)->update([
+                'img_produto' => $caminhoImagem,
+            ]);
+        }
+
       session()->flash('success', 'Produto foi cadastrado com sucesso');
       return view('admin.produtos.index')->with('produtos', Produto::all());
    }
@@ -48,16 +58,15 @@ class ProdutoController extends Controller
 
    public function update(Request $request, $id){
      $produto = Produto::findOrFail($id);
-     $campos;
 
      if($produto->nm_produto == $request->nm_produto){
-         $campos = $request->validate([
+         $request->validate([
              'desc_produto' => 'required|string',
              'vl_produto' => 'required',
              'id_categoria' => 'required',
          ]);
      } else {
-         $campos = $request->validate([
+         $request->validate([
              'nm_produto' => 'required|string|unique:produtos,nm_produto',
              'desc_produto' => 'required|string',
              'vl_produto' => 'required',
@@ -65,7 +74,21 @@ class ProdutoController extends Controller
          ]);
      }
 
-     $produto->update($request->all());
+        if ($request->hasFile('img_produto') && $request->file('img_produto')->isValid()) {
+            $caminhoImagem = $request->file('img_produto')->store('img/produtos');
+
+            $produto->update([
+                'img_produto' => $caminhoImagem,
+            ]);
+        }
+
+        $produto->update([
+            'nm_produto' => $request->nm_produto,
+            'desc_produto' => $request->desc_produto,
+            'vl_produto' => $request->vl_produto,
+            'id_categoria' => $request->id_categoria,
+        ]);
+
      session()->flash('success', 'Produto foi alterado com sucesso');
      return view('admin.produtos.index')->with('produtos', Produto::all());
    }
@@ -83,7 +106,7 @@ class ProdutoController extends Controller
     $produto->update([
         'status' => $novo_status,
     ]);
-    
+
     $produto->delete();
     session()->flash('success', 'Produto foi apagado com sucesso');
     return view('admin.produtos.index')->with('produtos', Produto::all());

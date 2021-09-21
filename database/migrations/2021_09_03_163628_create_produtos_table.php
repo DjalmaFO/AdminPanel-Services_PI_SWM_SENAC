@@ -20,7 +20,7 @@ class CreateProdutosTable extends Migration
             $table->decimal('vl_produto', 10, 2);
             $table->integer('qtd_produto');
             $table->integer('id_categoria')->references('categorias')->on('id');
-            $table->text('img_produto')->nullable();
+            $table->string('img_produto')->nullable();
             $table->timestamps();
         });
     }

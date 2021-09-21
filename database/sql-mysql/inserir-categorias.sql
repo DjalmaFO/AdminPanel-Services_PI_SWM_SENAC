@@ -28,3 +28,4 @@ from produtos p
 left join categorias c on c.id = p.id_categoria;
 
 select * from tb_produto_carrinhos;
+select * from produtos;
