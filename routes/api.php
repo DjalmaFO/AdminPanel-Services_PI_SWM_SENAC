@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\Api\CategoriaController;
+use App\Http\Controllers\Api\TbCarrinhoController;
 use App\Http\Controllers\AuthController;
 
 
@@ -44,15 +45,21 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Usuários
     Route::get('/users', [UserController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    
+
     // Produtos
     Route::post('/produto', [ProdutoController::class, 'store']);
     Route::put('/produto/{id}', [ProdutoController::class, 'update']);
     Route::delete('/produto/{id}', [ProdutoController::class, 'destroy']);
-    
+
     // Categorias
     Route::post('/categoria', [CategoriaController::class, 'store']);
     Route::put('/categoria/{id}', [CategoriaController::class, 'update']);
     Route::delete('/categoria/{id}', [CategoriaController::class, 'destroy']);
 
+    //Carrinho
+    Route::get('/carrinho', [TbCarrinhoController::class, 'carrinho']);
+    Route::post('/carrinho', [TbCarrinhoController::class, 'store']);
+    Route::get('/produtos/carrinho', [TbCarrinhoController::class, 'index']);
+    Route::delete('/produtos/carrinho', [TbCarrinhoController::class, 'destroy']);
+    Route::delete('/produto/carrinho/{id}', [TbCarrinhoController::class, 'excluirProdutoCarrinho']);
 });

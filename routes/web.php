@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () { 
     return view('welcome');
 });
 
@@ -24,3 +24,11 @@ Route::get('/produto/{id}', [ProdutoController::class, 'show'])->name('produto.s
 
 Route::get('/admin/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
 Route::get('/admin/categoria/create', [ProdutoController::class, 'create'])->name('categoria.create');
+
+Route::get('/admin/produtos', [ProdutoController::class, 'index'])->name('adm.produtos.index');
+Route::get('/admin/produto/show/{id}', [ProdutoController::class, 'show'])->name('adm.produto.show'); 
+Route::get('/admin/produto/create', [ProdutoController::class, 'create'])->name('adm.produto.create');
+Route::post('/admin/produto/store/', [ProdutoController::class, 'store'])->name('adm.produto.store');
+Route::get('/admin/produto/edit/{id}', [ProdutoController::class, 'edit'])->name('adm.produto.edit');
+Route::post('/admin/produto/update/{id}', [ProdutoController::class, 'update'])->name('adm.produto.update');
+Route::get('/admin/produto/destroy/{id}', [ProdutoController::class, 'destroy'])->name('adm.produto.destroy');

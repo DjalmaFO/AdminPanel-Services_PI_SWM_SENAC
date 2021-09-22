@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\TbCarrinho;
 
 class AuthController extends Controller
 {
@@ -39,7 +40,7 @@ class AuthController extends Controller
             'senha' => 'required|string',
         ]);
 
-        // Verifica o email 
+        // Verifica o email
         $user = User::where('email', $campos['email'])->first();
 
         // Verifica a senha
