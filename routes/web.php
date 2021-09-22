@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\CategoriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,6 @@ Route::get('/', function () {
 
 Route::get('/produto', [ProdutoController::class, 'index'])->name('produto.index');
 Route::get('/produto/{id}', [ProdutoController::class, 'show'])->name('produto.show');
+
+Route::get('/admin/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
+Route::get('/admin/categoria/create', [ProdutoController::class, 'create'])->name('categoria.create');
