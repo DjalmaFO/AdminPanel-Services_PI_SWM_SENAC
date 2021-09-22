@@ -9,6 +9,9 @@
     <h1>Editar produto</h1>
     <form method="POST" action="{{Route('adm.produto.update', $produto->id)}}">
         @csrf
+        <div class="row text-center">
+            <img src="{{ asset('storage/'.$produto->img_produto)}}" alt="Imagem do produto {{$produto->nm_produto}}">
+        </div>
         <div class="row">
             <span class="form-label">Nome</span>
             <input type="text" name="nm_produto" class="form-control" value="{{$produto->nm_produto}}">
@@ -25,16 +28,20 @@
             <span class="form-label">Quantidade</span>
             <input type="number" min="0" max="1000" name="vl_produto" step="0.01" class="form-control" value="{{$produto->qtd_produto}}">
         </div>
+        <label for="id_categoria">Categoria</label>
+            <select name="id_categoria" id="id_categoria">
+                <option selected="{{$categoria->id}}">{{$categoria->nm_categoria}}</option>
+                @foreach ($categorias as $c)
+                    <option value="{{$c->id}}">{{$c->nm_categoria}}</option>
+                @endforeach
+            </select>
         <div class="row">
-            <span class="form-label">Categoria</span>
-            <input type="text" name="id_categoria" class="form-control">
-        </div>
-        <div class="row">
-            <label for="img_produto" class="form-label">Imagem Produto</span>
+            <label for="img_produto" class="form-label">Alterar Imagem Produto</span>
             <input type="file" id="img_produto" name="img_produto" placeholder="Inserir imagem do produto" class="form-control-file">
         </div>
-        <div class="row mt-4">
-            <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+        <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-success btn-md">Salvar</button>
+            <a href="{{route('adm.produtos.index')}}" class="btn btn-warning btn-md">Cancelar</a>
         </div>
     </form>
     <ul>
@@ -42,9 +49,3 @@
     </ul>
 </body>
 </html>
-
-
-<h2>Edição do produto - {{$produto->nm_produto}}</h2>
-@foreach ($categorias as $categoria)
-    <p>{{$categoria->nm_categoria}}</p>
-@endforeach

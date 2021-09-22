@@ -26,15 +26,20 @@
             <input type="text" name="qtd_produto" class="form-control">
         </div>
         <div class="row">
-            <span class="form-label">Categoria</span>
-            <input type="text" name="id_categoria" class="form-control">
+            <label for="id_categoria">Categoria</label>
+            <select name="id_categoria" id="id_categoria">
+                @foreach ($categorias as $c)
+                    <option value="{{$c->id}}">{{$c->nm_categoria}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="row">
             <label for="img_produto" class="form-label">Imagem Produto</span>
             <input type="file" id="img_produto" name="img_produto" placeholder="Inserir imagem do produto" class="form-control-file">
         </div>
-        <div class="row mt-4">
-            <button type="submit" class="btn btn-success btn-lg">Salvar</button>
+        <div class="mt-4 text-center">
+            <button type="submit" class="btn btn-success btn-md">Salvar</button>
+            <a href="{{route('adm.produtos.index')}}" class="btn btn-warning btn-md">Cancelar</a>
         </div>
     </form>
     <ul>
@@ -42,8 +47,3 @@
     </ul>
 </body>
 </html>
-
-
-@foreach ($categorias as $categoria)
-    <p>{{$categoria->nm_categoria}}</p>
-@endforeach

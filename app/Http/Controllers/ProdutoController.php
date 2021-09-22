@@ -15,7 +15,11 @@ class ProdutoController extends Controller
     }
 
     public function show($id){
-        return \view('admin.produtos.show')->with('produto', Produto::findOrFail($id));
+        $produto = Produto::findOrFail($id);
+
+        $categoria = Categoria::findOrFail($produto->id_categoria);
+
+        return \view('admin.produtos.show')->with(['produto' => $produto, 'categoria' => $categoria]);
    }
 
    public function create(){
@@ -53,7 +57,10 @@ class ProdutoController extends Controller
    }
 
    public function edit($id){
-        return \view('admin.produtos.edit')->with(['produto' => Produto::findOrFail($id), 'categorias' => Categoria::all()]);
+        $produto = Produto::findOrFail($id);
+        $categoria = Categoria::findOrFail($produto->id_categoria);
+
+        return \view('admin.produtos.edit')->with(['produto' => $produto, 'categorias' => Categoria::all(), 'categoria' => $categoria]);
    }
 
    public function update(Request $request, $id){
