@@ -7,7 +7,7 @@
 </head>
 <body class="container mt-5">
     <h1>Editar produto</h1>
-    <form method="POST" action="{{Route('adm.produto.update', $produto->id)}}">
+    <form method="POST" action="{{Route('adm.produto.update', $produto->id)}}" enctype="multipart/form-data">
         @csrf
         <div class="row text-center">
             <img src="{{ asset('storage/'.$produto->img_produto)}}" alt="Imagem do produto {{$produto->nm_produto}}">

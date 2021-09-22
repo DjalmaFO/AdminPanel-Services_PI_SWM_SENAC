@@ -53,7 +53,7 @@ class ProdutoController extends Controller
         }
 
       session()->flash('success', 'Produto foi cadastrado com sucesso');
-      return view('admin.produtos.index')->with('produtos', Produto::all());
+      return redirect()->route('adm.produtos.index')->with('produtos', Produto::all());
    }
 
    public function edit($id){
@@ -97,7 +97,7 @@ class ProdutoController extends Controller
         ]);
 
      session()->flash('success', 'Produto foi alterado com sucesso');
-     return view('admin.produtos.index')->with('produtos', Produto::all());
+     return redirect()->route('adm.produtos.index')->with('produtos', Produto::all());
    }
 
    public function destroy($id){
@@ -116,6 +116,6 @@ class ProdutoController extends Controller
 
     $produto->delete();
     session()->flash('success', 'Produto foi apagado com sucesso');
-    return view('admin.produtos.index')->with('produtos', Produto::all());
+    return redirect()->route('adm.produtos.index')->with('produtos', Produto::all());
    }
 }
