@@ -44,8 +44,5 @@
             <a href="{{route('adm.produtos.index')}}" class="btn btn-warning btn-md">Cancelar</a>
         </div>
     </form>
-    <ul>
-
-    </ul>
 </body>
 </html>
