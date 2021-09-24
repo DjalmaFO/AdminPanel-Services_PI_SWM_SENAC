@@ -20,3 +20,9 @@ Route::get('/', function () {
 
 Route::get('/produto', [ProdutoController::class, 'index'])->name('produto.index');
 Route::get('/produto/{id}', [ProdutoController::class, 'show'])->name('produto.show');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin', 'AuthController@dashboard')->name("admin");
