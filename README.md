@@ -17,6 +17,7 @@
 - dentro do **_.env_** altere o valor da variável **_FILESYSTEM_DRIVER_** para public 
 - php artisan migrate
 - php artisan storage:link
+- composer require laravel/ui
 - php artisan serve
 - **Atenção** somente se necessário (execute php artisan key:generate)
 
