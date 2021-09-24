@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ProdutoController;
 use App\Http\Controllers\Api\CategoriaController;
 use App\Http\Controllers\Api\TbCarrinhoController;
+use App\Http\Controllers\Api\PedidoController;
 use App\Http\Controllers\AuthController;
 
 
@@ -62,4 +63,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/produtos/carrinho', [TbCarrinhoController::class, 'index']);
     Route::delete('/produtos/carrinho', [TbCarrinhoController::class, 'destroy']);
     Route::delete('/produto/carrinho/{id}', [TbCarrinhoController::class, 'excluirProdutoCarrinho']);
+
+    //Pedido
+    Route::get('/pedidos',[PedidoController::class, 'index']);
 });

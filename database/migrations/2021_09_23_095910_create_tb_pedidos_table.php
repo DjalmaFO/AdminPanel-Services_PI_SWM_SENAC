@@ -17,7 +17,7 @@ class CreateTbPedidosTable extends Migration
             $table->id();
             $table->integer('id_user')->references('users')->on('id');
             $table->string('status')->default('P'); // Pendente
-            $table->string('observação')->nullable();
+            $table->string('observacao')->nullable();
             $table->timestamps();
         });
     }

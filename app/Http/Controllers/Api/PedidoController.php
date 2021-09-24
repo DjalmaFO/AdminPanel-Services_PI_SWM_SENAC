@@ -14,7 +14,13 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        $pedidos = \auth()->user()->getPedidos()->get();
+
+        if(empty($pedidos)){
+            return response()->json(['msg' => 'Não há histórico de pedidos'], 200);
+        }
+
+        return \response()->json(['Pedidos', $pedidos]);
     }
 
     /**

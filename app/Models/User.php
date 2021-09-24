@@ -48,4 +48,8 @@ class User extends Authenticatable
     public function getCarrinho(){
         return $this->hasOne(TBCarrinho::class, 'id_user', 'id');
     }
+
+    public function getPedidos(){
+        return $this->hasMany(TbPedido::class, 'id_user', 'id');
+    }
 }
