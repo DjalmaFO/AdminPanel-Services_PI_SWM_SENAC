@@ -14,4 +14,9 @@ class TbPedido extends Model
         'status',
         'observacao',
     ];
+
+
+    public function getProdutosPedido(){
+        return $this->hasMany(TbExplodeProdutosPedido::class, 'id_pedido', 'id');
+    }
 }

@@ -17,8 +17,8 @@ class CreateTbExplodeProdutosPedidosTable extends Migration
             $table->integer('id_pedido')->references('tb_pedidos')->on('id');
             $table->integer('id_produto')->references('produtos')->on('id');
             $table->integer('qtd_produto');
-            $table->decimal('vl_produto');
-            $table->decimal('vl_frete')->nullable();
+            $table->decimal('vl_produto', 10, 2);
+            $table->decimal('vl_frete', 10, 2)->nullable();
             $table->timestamps();
         });
     }

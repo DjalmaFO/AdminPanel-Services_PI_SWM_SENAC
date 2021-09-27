@@ -66,4 +66,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //Pedido
     Route::get('/pedidos',[PedidoController::class, 'index']);
+    Route::post('/pedido',[PedidoController::class, 'store']);
 });

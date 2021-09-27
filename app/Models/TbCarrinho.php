@@ -14,7 +14,7 @@ class TbCarrinho extends Model
         'id_user',
     ];
 
-    public function getProdutos(){
+    public function getProdutosCarrinho(){
         return $this->hasMany(TbProdutoCarrinho::class, 'id_carrinho', 'id');
     }
 
