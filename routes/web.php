@@ -32,9 +32,3 @@ Route::post('/admin/produto/update/{id}', [ProdutoController::class, 'update'])-
 Route::get('/admin/produto/destroy/{id}', [ProdutoController::class, 'destroy'])->name('adm.produto.destroy');
 Route::get('/produto', [ProdutoController::class, 'index'])->name('produto.index');
 Route::get('/produto/{id}', [ProdutoController::class, 'show'])->name('produto.show');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/admin', 'AuthController@dashboard')->name("admin");

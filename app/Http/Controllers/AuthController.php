@@ -12,15 +12,15 @@ class AuthController extends Controller
 {
     public function registrar(Request $request){
         $campos = $request->validate([
-            'name' => 'required|string',
+            'nm_user' => 'required|string',
             'email' => 'required|string|unique:users,email',
-            'password' => 'required|string|confirmed',
+            'senha' => 'required|string|confirmed',
         ]);
 
         $user = User::create([
-            'name' => $campos['name'],
+            'nm_user' => $campos['nm_user'],
             'email' => $campos['email'],
-            'password' => bcrypt($campos['password']),
+            'senha' => bcrypt($campos['senha']),
         ]);
 
         $token = $user->createToken('myapptoken')->plainTextToken;
@@ -37,25 +37,19 @@ class AuthController extends Controller
     public function login(Request $request){
         $campos = $request->validate([
             'email' => 'required|string',
-            'password' => 'required|string',
+            'senha' => 'required|string',
         ]);
 
         // Verifica o email
         $user = User::where('email', $campos['email'])->first();
 
-        // Verifica a password
-        if(!$user || !Hash::check($campos['password'], $user->password)){
-            return response()->json(['message' => 'Usuário ou password inválido'], 401);
+        // Verifica a senha
+        if(!$user || !Hash::check($campos['senha'], $user->senha)){
+            return response()->json(['message' => 'Usuário ou senha inválido'], 401);
         }
 
         $token = $user->createToken('myapptoken')->plainTextToken;
 
         return response()->json(['user' => $user, 'token' => $token], 201);
     }
-
-    public function dashboard(){
-        return view('admin.dashboard');
-    }
-
-
 }
