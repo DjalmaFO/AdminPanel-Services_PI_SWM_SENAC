@@ -16,7 +16,7 @@
             {{ session()->get('success')}}
         </div>
     @endif
-    <h1>Lista de Produtos</h1>
+    <h1>Lista de Categorias</h1>
     <a href="{{route('categoria.create')}}" class="btn btn-lg btn-primary">Criar Categoria</a>
     <div class="row">
         <table class="table table-striped">
@@ -34,8 +34,8 @@
                         <td>{{$cat->nm_categoria}}</td>
                         <td>
                             <a href="#" class="btn btn-sm btn-success">Visualizar</a>
-                            <a href="#" class="btn btn-sm btn-warning">Editar</a>
-                            <a href="#" onclick="remover('#');" class="btn btn-sm btn-danger">Apagar</a>
+                            <a href="{{ route('categoria.edit', $cat->id) }}" class="btn btn-sm btn-warning">Editar</a>
+                            <a href="#" onclick="remover(' {{ route('categoria.destroy', $cat->id )}} ');" class="btn btn-sm btn-danger">Apagar</a>
                         </td>
                     </tr>
                 @endforeach

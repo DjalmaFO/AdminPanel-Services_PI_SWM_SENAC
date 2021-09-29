@@ -13,56 +13,32 @@ class CategoriaController extends Controller
     }
 
     public function create(){
-        return view('categoria.create');
+        return view('admin.categoria.create');
     }
 
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        Categoria::create($request->all());
+        session()->flash('success', 'Categoria criada com sucesso');
+        return redirect()->route('admin.categoria.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Categoria  $categoria
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Categoria $categoria)
-    {
-        //
+    public function show(Categoria $categoria){
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Categoria  $categoria
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Categoria $categoria)
-    {
-        //
+    public function edit(Categoria $categoria){
+        return view('admin.categoria.index')->with('categoria', $categoria);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Categoria  $categoria
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Categoria $categoria)
-    {
-        //
+    public function update(Request $request, Categoria $categoria){
+        $categoria->update($request->all());
+        session()->flash('success', 'Categoria atualizada com sucesso!');
+        return redirect()->route('admin.categoria.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Categoria  $categoria
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Categoria $categoria)
-    {
-        //
+    public function destroy(Categoria $categoria){
+        $categoria->delete();
+        session()->flash('success', 'Categoria foi apagada com sucesso!');
+        return redirect()->route('categoria.index');
     }
 }

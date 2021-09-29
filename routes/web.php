@@ -20,7 +20,11 @@ Route::get('/', function () {
 });
 
 Route::get('/admin/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
-Route::get('/admin/categoria/create', [ProdutoController::class, 'create'])->name('categoria.create');
+Route::get('/admin/categoria/create', [CategoriaController::class, 'create'])->name('categoria.create');
+Route::post('/admin/categoria/store/', [CategoriaController::class, 'store'])->name('categoria.store');
+Route::get('/admin/categoria/edit/{categoria}', [CategoriaController::class, 'edit'])->name('categoria.edit');
+Route::post('/admin/categoria/update/{categoria}', [CategoriaController::class, 'update'])->name('categoria.update');
+Route::get('/admin/categoria/destroy/{categoria}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
 
 Route::get('/admin/produtos', [ProdutoController::class, 'index'])->name('adm.produtos.index');
 Route::get('/admin/produto/show/{id}', [ProdutoController::class, 'show'])->name('adm.produto.show'); 
