@@ -19,21 +19,22 @@ class CategoriaController extends Controller
     public function store(Request $request){
         Categoria::create($request->all());
         session()->flash('success', 'Categoria criada com sucesso');
-        return redirect()->route('admin.categoria.index');
+        return redirect()->route('categoria.index');
     }
 
     public function show(Categoria $categoria){
-        
+        $categoria = Categoria::findOrFail($categoria);
+        return view('categoria.show');
     }
 
     public function edit(Categoria $categoria){
-        return view('admin.categoria.index')->with('categoria', $categoria);
+        return view('admin.categoria.edit')->with('categoria', $categoria);
     }
 
     public function update(Request $request, Categoria $categoria){
         $categoria->update($request->all());
         session()->flash('success', 'Categoria atualizada com sucesso!');
-        return redirect()->route('admin.categoria.index');
+        return redirect()->route('categoria.index');
     }
 
     public function destroy(Categoria $categoria){

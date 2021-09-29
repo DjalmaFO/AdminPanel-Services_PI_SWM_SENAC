@@ -6,8 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 </head>
 <body>
-@include('admin.layouts.menu')
-    <main class="container my-4">
+    @include('admin.layouts.menu')
+    <main  class="container mt-5">
         @if(session()->has('success'))
             <div class="alert alert-success" role="alert">{{ session()->get('success') }}</div>
         @endif
@@ -19,14 +19,11 @@
         </div>
         <div class="row text-center">
             <div class="text-center">
-                <h2>{{$produto->nm_produto}}</h2>
-                <p>{{ $produto->desc_produto }}</p>
-                <span class="h4 d-block">R$ {{$produto->vl_produto}}</span>
-                <span class="h4 d-block">Unidades: {{$produto->qtd_produto}}</span>
+                <h2>{{$categoria->nm_categoria}}</h2>
                 <span class="h4 d-block">Categoria: {{$categoria->nm_categoria}}</span>
             </div>
             <div class="text-center mt-4">
-                <a href="{{route('adm.produtos.index')}}" class="btn btn-primary btn-md">Voltar</a>
+                <a href="{{route('adm.categoria.index')}}" class="btn btn-primary btn-md">Voltar</a>
             </div>
         </div>
         <div class="mt-4">

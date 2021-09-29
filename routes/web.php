@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::get('/admin/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
 Route::get('/admin/categoria/create', [CategoriaController::class, 'create'])->name('categoria.create');
+Route::get('/admin/categoria/show/{categoria}', [CategoriaController::class, 'show'])->name('adm.categoria.show'); 
 Route::post('/admin/categoria/store/', [CategoriaController::class, 'store'])->name('categoria.store');
 Route::get('/admin/categoria/edit/{categoria}', [CategoriaController::class, 'edit'])->name('categoria.edit');
 Route::post('/admin/categoria/update/{categoria}', [CategoriaController::class, 'update'])->name('categoria.update');

@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Categoria;
 
 class Produto extends Model
 {
     use HasFactory;
-
+    use SoftDeletes;
+    
     protected $fillable = [
         'nm_produto', 
         'desc_produto',
@@ -20,6 +22,6 @@ class Produto extends Model
     ];
 
     public function categoria(){
-        return $this->hasMany(Categoria::class, 'id', 'id_categoria'); 
+        return $this->belongsTo(Categoria::class, 'id', 'id_categoria'); 
     }
 }
