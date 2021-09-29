@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TbCarrinho;
+use App\Models\TbExplodeProdutosPedido;
 use Illuminate\Http\Request;
 
-class TbCarrinhoController extends Controller
+class TbExplodeProdutosPedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class TbCarrinhoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TbCarrinho  $tbCarrinho
+     * @param  \App\Models\TbExplodeProdutosPedido  $tbExplodeProdutosPedido
      * @return \Illuminate\Http\Response
      */
-    public function show(TbCarrinho $tbCarrinho)
+    public function show(TbExplodeProdutosPedido $tbExplodeProdutosPedido)
     {
         //
     }
@@ -52,10 +52,10 @@ class TbCarrinhoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TbCarrinho  $tbCarrinho
+     * @param  \App\Models\TbExplodeProdutosPedido  $tbExplodeProdutosPedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(TbCarrinho $tbCarrinho)
+    public function edit(TbExplodeProdutosPedido $tbExplodeProdutosPedido)
     {
         //
     }
@@ -64,10 +64,10 @@ class TbCarrinhoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TbCarrinho  $tbCarrinho
+     * @param  \App\Models\TbExplodeProdutosPedido  $tbExplodeProdutosPedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TbCarrinho $tbCarrinho)
+    public function update(Request $request, TbExplodeProdutosPedido $tbExplodeProdutosPedido)
     {
         //
     }
@@ -75,10 +75,10 @@ class TbCarrinhoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TbCarrinho  $tbCarrinho
+     * @param  \App\Models\TbExplodeProdutosPedido  $tbExplodeProdutosPedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TbCarrinho $tbCarrinho)
+    public function destroy(TbExplodeProdutosPedido $tbExplodeProdutosPedido)
     {
         //
     }

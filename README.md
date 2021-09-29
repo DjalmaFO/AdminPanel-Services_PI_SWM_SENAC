@@ -18,6 +18,7 @@
 - php artisan migrate
 - php artisan storage:link
 - php artisan serve
+- composer require laravel/jetstream
 - **Atenção** somente se necessário (execute php artisan key:generate)
 
 ### Possíveis problemas

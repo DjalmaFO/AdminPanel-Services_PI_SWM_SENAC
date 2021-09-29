@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TbProdutoCarrinho;
+use App\Models\TbPedido;
 use Illuminate\Http\Request;
 
-class TbProdutoCarrinhoController extends Controller
+class TbPedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class TbProdutoCarrinhoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TbProdutoCarrinho  $tbProdutoCarrinho
+     * @param  \App\Models\TbPedido  $tbPedido
      * @return \Illuminate\Http\Response
      */
-    public function show(TbProdutoCarrinho $tbProdutoCarrinho)
+    public function show(TbPedido $tbPedido)
     {
         //
     }
@@ -52,10 +52,10 @@ class TbProdutoCarrinhoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TbProdutoCarrinho  $tbProdutoCarrinho
+     * @param  \App\Models\TbPedido  $tbPedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(TbProdutoCarrinho $tbProdutoCarrinho)
+    public function edit(TbPedido $tbPedido)
     {
         //
     }
@@ -64,10 +64,10 @@ class TbProdutoCarrinhoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TbProdutoCarrinho  $tbProdutoCarrinho
+     * @param  \App\Models\TbPedido  $tbPedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TbProdutoCarrinho $tbProdutoCarrinho)
+    public function update(Request $request, TbPedido $tbPedido)
     {
         //
     }
@@ -75,10 +75,10 @@ class TbProdutoCarrinhoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TbProdutoCarrinho  $tbProdutoCarrinho
+     * @param  \App\Models\TbPedido  $tbPedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TbProdutoCarrinho $tbProdutoCarrinho)
+    public function destroy(TbPedido $tbPedido)
     {
         //
     }

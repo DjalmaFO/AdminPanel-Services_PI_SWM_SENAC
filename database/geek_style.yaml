@@ -1,0 +1,243 @@
+---
+openapi: 3.0.0
+info:
+  title: Ecommerce Mobile Modularizável
+  description: API Rest para a Aplicação Android
+  contact:
+    email: djalmafreire@outlook.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+- url: http://localhost:8000/api
+  description: API disponibilizada para Homologação
+tags:
+- name: usuario
+  description: Cadastro básico de usuários
+- name: produtos
+  description: Consulta de produtos
+- name: categorias
+  description: Consulta de categorias
+- name: carrinho
+  description: Consulta carrinho
+- name: pedidos
+  description: Consulta de histórico de pedidos
+paths:
+  /registrar:
+    post:
+      tags:
+      - usuario
+      summary: Cria um usuário
+      description: Cria um usuário e retorna token de identificação
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref:  "#/components/schemas/Usuario"
+      responses:
+        "200":
+          description: Retorna um Objeto JSON com o nome do usuario e token
+          content:
+            application/json:
+              schema:
+                $ref:  "#/components/schemas/RetUsuario"
+        "404":
+          description: Rota não encontrada
+  /login:
+    post:
+      tags:
+        - usuario
+      summary: Longin
+      description: Retorna token de identificação
+      requestBody:
+        required: true
+        content:
+          aplication/json:
+            schema:
+              $ref:  "#/components/schemas/Login"
+      responses:
+        "200":
+          description: Retorna um Objeto JSON com o nome do usuario e token
+          content:
+            application/json:
+              schema:
+                $ref:  "#/components/schemas/RetUsuario"
+        "404":
+          description: map[string]string{"msg":"Nota fiscal não encontrada"}
+  /logout:
+    post:
+      tags:
+        - usuario
+      summary: Logout
+      description: Elimina o token do usuário, impedindo de acessar a área com obrigação de autenticação
+      security:
+        - bearerAut: []
+      responses:
+        "200":
+          description: Retorna um Objeto JSON com a informação de desconexão
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: Desconectado
+        "404":
+          description: map[string]string{"msg":"Nota fiscal não encontrada"}
+  /produtos:
+    get:
+      tags:
+        - produtos
+      summary: Consulta de produtos
+      description: Rota sem obrigatoriedade de estar logado
+      responses:
+        "200":
+          description: Retorna um Objeto JSON com a informação de desconexão
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  msg:
+                    type: string
+                    example: Desconectado
+        "404":
+          description: map[string]string{"msg":"Nota fiscal não encontrada"}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Usuario:
+      type: object
+      required:
+        - nm_user
+        - email
+        - senha
+        - senha_confirmation
+      properties:
+        nm_user:
+          type: string
+          description: Nome do usuário
+          format: text
+          example: Djalma
+        email:
+          type: string
+          description: email 
+          format: email
+          example: djalma@djalma.com.br
+        senha:
+          type: string
+          description: Senha
+          format: text
+          example: senha123
+        senha_confirmation:
+          type: string
+          description: Senha
+          format: text
+          example: senha123
+    Login:
+      type: object
+      required:
+        - email
+        - senha
+      properties:
+        email:
+          type: string
+          description: email 
+          format: email
+          example: djalma@djalma.com.br
+        senha:
+          type: string
+          description: Senha
+          format: text
+          example: senha123
+    RetUsuario:
+      type: object
+      properties:
+        nome:
+          type: string
+          description: Nome do usuário
+          format: text
+          example: Djalma
+        token:
+          type: string
+          description: token a ser utilizado para realizar requisições autenticadas
+          format: text
+          example: "4|jsdkfjdkroeiornmmçfsldçlfke24dfscdk"
+    RetNota:
+      type: object
+      properties:
+        nf:
+          type: number
+          description: Numero da nota fiscal
+          format: integer
+          example: 123
+        nf_emitida:
+          type: string
+          format: date-time
+          example: "01/01/2021"
+        nf_expedicao:
+          type: string
+          format: date-time
+          example: "02/01/2021"
+        nf_retirada_transp:
+          type: string
+          format: date-time
+          example: "05/01/2021"
+        nf_em_transito:
+          type: string
+          description: Data de 
+          format: date-time
+          example: "06/01/2021"
+        nf_rota_entrega:
+          type: string
+          format: date-time
+          example: "07/01/2021"
+        nf_entregue:
+          type: string
+          format: date-time
+          example: "10/01/2021"
+    Produto:
+      type: object
+      properties:
+        id:
+          type: number
+          format: integer
+          example: 1
+        nm_produto: 
+          type: string
+          example: "Produto 1"
+        desc_produto: 
+          type: string
+          example: Inserção em massa de produtos
+        vl_produto: 
+          type: number
+          format: double
+          example: 199.90
+        qtd_produto:
+          type: number
+          format: integer
+          example: 5
+        id_categoria": 
+          type: number
+          format: integer
+          example: 1
+        img_produto:
+          type: string
+          description: path da imagem
+          format: text
+          example: img/produtos/imagem.jpg
+        created_at:
+          type: string
+          format: date-time
+          example: "null"
+        updated_at:
+          type: string
+          format: date-time
+          example: "null"

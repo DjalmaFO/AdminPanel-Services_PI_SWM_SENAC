@@ -18,7 +18,7 @@ class TbCarrinhoController extends Controller
             $carrinho = $this->criarCarrinho();
         }
 
-        $produtos = $carrinho->getProdutos()->get();
+        $produtos = $carrinho->getProdutosCarrinho()->get();
 
         if(sizeof($produtos) == 0){
             return response()->json(['msg' => 'Ops, carrinho vazio :( '], 200);
