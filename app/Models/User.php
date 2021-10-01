@@ -58,4 +58,12 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function getCarrinho(){
+        return $this->hasOne(TbCarrinho::class, 'id_user', 'id');
+    }
+
+    public function getPedidos(){
+        return $this->hasMany(TbPedido::class, 'id_user', 'id');
+    }
 }
