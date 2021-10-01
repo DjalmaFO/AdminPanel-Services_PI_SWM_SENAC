@@ -17,9 +17,9 @@
 - dentro do **_.env_** altere o valor da variável **_FILESYSTEM_DRIVER_** para public 
 - php artisan migrate
 - php artisan storage:link
-- php artisan serve
 - composer require laravel/jetstream
 - **Atenção** somente se necessário (execute php artisan key:generate)
+- php artisan serve
 
 ### Possíveis problemas
 - Artisan não funciona: execute o comando **_composer update --no-scripts_**  

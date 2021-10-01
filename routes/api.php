@@ -44,7 +44,7 @@ Route::get('/categoria/{id}', [CategoriaController::class, 'show']);
 // Rotas protegidas
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // Usuários
-    Route::get('/users', [UserController::class, 'index']);
+    // Route::get('/users', [UserController::class, 'index']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
     // Produtos
