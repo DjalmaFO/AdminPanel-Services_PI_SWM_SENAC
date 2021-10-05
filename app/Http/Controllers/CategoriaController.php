@@ -24,7 +24,7 @@ class CategoriaController extends Controller
 
     public function show(Categoria $categoria){
         $categoria = Categoria::findOrFail($categoria);
-        return view('categoria.show');
+        return view('admin.categoria.show');
     }
 
     public function edit(Categoria $categoria){
@@ -38,6 +38,10 @@ class CategoriaController extends Controller
     }
 
     public function destroy(Categoria $categoria){
+        if($categoria->produtos()->count() > 0){
+            session()->flash('success', 'Você não pode apagar uma categoria que tenha produto');
+            return redirect()->route('categoria.index');
+        }
         $categoria->delete();
         session()->flash('success', 'Categoria foi apagada com sucesso!');
         return redirect()->route('categoria.index');

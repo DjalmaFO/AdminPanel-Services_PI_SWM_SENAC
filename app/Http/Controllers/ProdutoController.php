@@ -33,6 +33,7 @@ class ProdutoController extends Controller
           'vl_produto' => 'required',
           'qtd_produto' => 'required',
           'id_categoria' => 'required',
+          
       ]);
 
       $produto = Produto::create([
@@ -41,6 +42,7 @@ class ProdutoController extends Controller
           'vl_produto' => $campos['vl_produto'],
           'qtd_produto' => $campos['qtd_produto'],
           'id_categoria' => $campos['id_categoria'],
+          
         ]);
 
         // upload de Imagem
