@@ -52,4 +52,8 @@ class AuthController extends Controller
 
         return response()->json(['nome' => $user->name, 'token' => $token], 201);
     }
+
+    public function newLogin(){
+        return \view('auth.new_login');
+    }
 }
