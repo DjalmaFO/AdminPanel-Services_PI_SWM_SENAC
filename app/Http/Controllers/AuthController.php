@@ -34,6 +34,13 @@ class AuthController extends Controller
         return response()->json([ 'message' => 'Desconectado'], 200);
     }
 
+    public function sair(Request $request){
+        auth()->user()->tokens()->delete();
+        auth()->logout();
+
+        return \redirect('/');
+    }
+
     public function login(Request $request){
         $campos = $request->validate([
             'email' => 'required|string',

@@ -1,9 +1,19 @@
 @extends('layouts.layout_login')
 @section('corpo')
+      @if (session('status'))
+            <div class="mb-4 font-medium text-sm text-green-600">
+                {{ session('status') }}
+            </div>
+        @endif
     <div class="row px-3">
         <div class="row justify-content-center">
             <img src="{{asset('img/geek-logo.jpg')}}" alt="logo geek style" class="col-lg-3 col-md-4 col-sm-6 col-xs-8">
         </div>
+        @if($errors->any())
+        <div class="row fs-5 text-danger justify-content-center mt-3 mb-3">
+            {{ implode('', $errors->all(':message')) }}
+        </div>
+        @endif
         <div class="row justify-content-center">
             <form method="POST" class="col-lg-4 col-md-4 col-sm-6 col-xs-8" action="{{ route('login') }}">
             @csrf

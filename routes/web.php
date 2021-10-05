@@ -21,6 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/adm_login', [AuthController::class, 'newLogin'])->name('new.login');
+Route::get('/adm_logout', [AuthController::class, 'sair'])->name('sair');
 
 Route::get('/admin/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
 Route::get('/admin/categoria/create', [ProdutoController::class, 'create'])->name('categoria.create');

@@ -12,13 +12,13 @@
     <title>Geek Style</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
 
 </head>
 
@@ -42,10 +42,25 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-cubes"></i>
+                    <span>{{auth()->user()->name}}</span>
+                </a>
+                <div id="collapseUser" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="#">Perfil</a>
+                        <a class="collapse-item" href="{{ route('sair') }}">Sair</a>
+                    </div>
+                </div>
+            </li>
             <li class="nav-item active">
                 <a class="nav-link" href="{{ url('/dashboard') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -63,10 +78,11 @@
                     <i class="fas fa-cubes"></i>
                     <span>Produtos</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('adm.produto.create')}}">Novo</a>
-                        <a class="collapse-item" href="{{route('adm.produtos.index')}}">Produtos</a>
+                        <a class="collapse-item" href="{{ route('adm.produto.create') }}">Novo</a>
+                        <a class="collapse-item" href="{{ route('adm.produtos.index') }}">Produtos</a>
                     </div>
                 </div>
             </li>
@@ -81,8 +97,8 @@
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('categoria.create')}}">Nova</a>
-                        <a class="collapse-item" href="{{route('categoria.index')}}">Categorias</a>
+                        <a class="collapse-item" href="{{ route('categoria.create') }}">Nova</a>
+                        <a class="collapse-item" href="{{ route('categoria.index') }}">Categorias</a>
                     </div>
                 </div>
             </li>
@@ -102,7 +118,8 @@
                     <i class="fas fa-clipboard-list"></i>
                     <span>Pedidos</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="#">Novos</a>
                         <a class="collapse-item" href="#">Entregues</a>
@@ -136,7 +153,8 @@
 
             <!-- Sidebar Message -->
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="{{asset('img/geek-logo.jpg')}}" alt="logo geek style">
+                <img class="sidebar-card-illustration mb-2" src="{{ asset('img/geek-logo.jpg') }}"
+                    alt="logo geek style">
             </div>
 
         </ul>
@@ -146,7 +164,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <main id="content">
+            <main id="content" class="container mt-5">
                 @yield('corpo-dash')
             </main>
             <!-- End of Main Content -->
@@ -193,21 +211,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+    <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
     <!-- Page level plugins -->
-    <script src="{{asset('vendor/chart.js/Chart.min.js')}}"></script>
+    <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
 
     <!-- Page level custom scripts -->
-    <script src="{{asset('js/demo/chart-area-demo.js')}}"></script>
-    <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
