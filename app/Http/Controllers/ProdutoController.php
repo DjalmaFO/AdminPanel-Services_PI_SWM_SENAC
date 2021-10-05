@@ -11,7 +11,7 @@ class ProdutoController extends Controller
 {
    public function index(){
 
-       return view('admin.produtos.index')->with('produtos', Produto::all());
+       return view('admin.produtos.index')->with('produtos', Produto::orderBy('nm_produto')->cursorPaginate(5));
     }
 
     public function show($id){
