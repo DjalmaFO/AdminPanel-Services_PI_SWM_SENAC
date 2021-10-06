@@ -31,7 +31,7 @@
                     @endforeach
                 </select>
             </div>
-            <div class="row">
+            <div class="form-group">
                 <label for="img_produto" class="form-label">Imagem Produto</span>
                     <input type="file" id="img_produto" name="img_produto" placeholder="Inserir imagem do produto"
                         class="form-control-file">
