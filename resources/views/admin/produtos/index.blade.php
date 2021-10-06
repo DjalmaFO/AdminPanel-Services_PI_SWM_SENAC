@@ -45,7 +45,7 @@
         {{$produtos->links()}}
 
         <p>
-            Displaying {{$produtos->count()}} de {{ sizeOf(DB::select('select * from produtos')) }} produtos(s).
+            {{$produtos->count()}} de {{ sizeOf(DB::select('select * from produtos')) }} produtos(s).
         </p>
     </div>
 @endsection
