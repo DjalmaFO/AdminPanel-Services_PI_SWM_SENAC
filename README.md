@@ -18,6 +18,10 @@
 - php artisan migrate
 - php artisan storage:link
 - composer require laravel/jetstream
+- composer require spatie/laravel-permission
+- php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+- php artisan optimize:clear
+- php artisan migrate
 - **Atenção** somente se necessário (execute php artisan key:generate)
 - php artisan serve
 
