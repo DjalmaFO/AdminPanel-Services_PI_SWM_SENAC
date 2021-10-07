@@ -70,10 +70,10 @@ class User extends Authenticatable
     }
 
     public function isAdmin(){
-        if(\auth()->user()->admin == 1){
-            return true;
+        if(\auth()->user()->nivel == 'admin'){
+            return \true;
         } else {
-            return false;
+            return \false;
         }
     }
 }
