@@ -35,10 +35,12 @@ class AuthController extends Controller
     }
 
     public function sair(Request $request){
-        auth()->user()->tokens()->delete();
+        if(auth()->user()){
+            auth()->user()->tokens()->delete();
+        }
         auth()->logout();
 
-        return \redirect('/');
+        return \view('welcome');
     }
 
     public function login(Request $request){
@@ -80,5 +82,9 @@ class AuthController extends Controller
         $user->createToken('myapptoken')->plainTextToken;
 
         return \redirect()->route('dashboard');
+    }
+
+    public function perfil(){
+        return \view('users.perfil')->with('usuario', \auth()->user());
     }
 }

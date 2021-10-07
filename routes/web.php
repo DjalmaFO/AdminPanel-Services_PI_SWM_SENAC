@@ -24,6 +24,7 @@ Route::get('/adm_login', [AuthController::class, 'newLogin'])->name('new.login')
 // Route::post('/adm_register', [AuthController::class, 'newRegister'])->name('new.register');
 Route::get('/adm_logout', [AuthController::class, 'sair'])->name('sair');
 
+
 Route::middleware(['admin'])->group(function(){
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -41,4 +42,6 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin/produto/edit/{id}', [ProdutoController::class, 'edit'])->name('adm.produto.edit');
     Route::post('/admin/produto/update/{id}', [ProdutoController::class, 'update'])->name('adm.produto.update');
     Route::get('/admin/produto/destroy/{id}', [ProdutoController::class, 'destroy'])->name('adm.produto.destroy');
+
+    Route::get('/perfil', [AuthController::class, 'perfil'])->name('perfil');
 });
