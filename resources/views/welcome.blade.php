@@ -24,9 +24,9 @@
                     @else
                         <a href="{{ route('new.login') }}" class="text-lg text-gray-900 underline">Entrar</a>
 
-                        @if (Route::has('register'))
+                        {{-- @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="ml-4 text-lg text-gray-900 underline">Registre-se</a>
-                        @endif
+                        @endif --}}
                     @endauth
                 </div>
             @endif

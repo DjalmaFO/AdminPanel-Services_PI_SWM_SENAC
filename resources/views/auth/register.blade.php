@@ -5,7 +5,7 @@
             <img src="{{ asset('img/geek-logo.jpg') }}" alt="logo geek style" class="col-lg-3 col-md-4 col-sm-6 col-xs-8">
         </div>
         <div class="row justify-content-center">
-            <form class="col-lg-4 col-md-4 col-sm-6 col-xs-8" method="POST" action="{{ route('register') }}">
+            <form class="col-lg-4 col-md-4 col-sm-6 col-xs-8" method="POST" action="{{ route('new.register') }}">
                 @csrf
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="name" value="{{ __('Name') }}"> Nome </label>

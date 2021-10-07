@@ -18,7 +18,7 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         if(!auth()->user()->isAdmin()){
-           return \redirect()->route('new.login');
+           return \redirect()->route('sair');
         }
 
         return $next($request);

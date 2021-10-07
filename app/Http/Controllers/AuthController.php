@@ -63,4 +63,22 @@ class AuthController extends Controller
     public function newLogin(){
         return \view('auth.new_login');
     }
+
+    public function newRegister(Request $request){
+        $campos = $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|string|unique:users,email',
+            'password' => 'required|string|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $campos['name'],
+            'email' => $campos['email'],
+            'password' => Hash::make($campos['password']),
+        ]);
+
+        $user->createToken('myapptoken')->plainTextToken;
+
+        return \redirect()->route('dashboard');
+    }
 }

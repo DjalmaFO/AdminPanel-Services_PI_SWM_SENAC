@@ -36,11 +36,11 @@
             </div>
 
             <div class="row justify-content-end mt-4 px-1">
-                @if (Route::has('password.request'))
+                {{-- @if (Route::has('password.request'))
                     <a class="text-sm text-gray-600 hover:text-gray-900 col-6 " href="{{ route('register') }}">
                         {{ __('Não sou cadastrado') }}
                     </a>
-                @endif
+                @endif --}}
 
                 <x-jet-button class="btn-md btn-primary btn px-3 col-4">
                     {{ __('Log in') }}

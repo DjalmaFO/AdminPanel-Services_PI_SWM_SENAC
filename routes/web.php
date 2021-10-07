@@ -21,15 +21,13 @@ Route::get('/', function () {
 });
 
 Route::get('/adm_login', [AuthController::class, 'newLogin'])->name('new.login');
-
-
-
-Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::post('/adm_register', [AuthController::class, 'newRegister'])->name('new.register');
+Route::get('/adm_logout', [AuthController::class, 'sair'])->name('sair');
 
 Route::middleware(['admin'])->group(function(){
-    Route::get('/adm_logout', [AuthController::class, 'sair'])->name('sair');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
     //Categorias
     Route::get('/admin/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
@@ -43,6 +41,4 @@ Route::middleware(['admin'])->group(function(){
     Route::get('/admin/produto/edit/{id}', [ProdutoController::class, 'edit'])->name('adm.produto.edit');
     Route::post('/admin/produto/update/{id}', [ProdutoController::class, 'update'])->name('adm.produto.update');
     Route::get('/admin/produto/destroy/{id}', [ProdutoController::class, 'destroy'])->name('adm.produto.destroy');
-
-
 });
