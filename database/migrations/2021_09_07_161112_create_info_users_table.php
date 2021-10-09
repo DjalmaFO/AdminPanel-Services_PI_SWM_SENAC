@@ -15,6 +15,16 @@ class CreateInfoUsersTable extends Migration
     {
         Schema::create('info_users', function (Blueprint $table) {
             $table->id();
+            $table->string('cep')->nullable();
+            $table->text('endereco')->nullable();
+            $table->string('numero')->nullable();
+            $table->string('complemento')->nullable();
+            $table->string('bairro')->nullable();
+            $table->string('cidade')->nullable();
+            $table->string('estado')->nullable();
+            $table->string('estado')->nullable();
+            $table->tesxt('img_user')->nullable();
+            $table->integer('id_user')->references('users')->on('id');
             $table->timestamps();
         });
     }
