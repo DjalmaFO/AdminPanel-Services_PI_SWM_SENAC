@@ -47,5 +47,4 @@ insert into produtos (
 )values(
 	'Produto 8', 'Inserção em massa de produtos', '199.90', 3, 5
 );
-
--- select *from produtos;
+select * from produtos;

@@ -30,6 +30,9 @@ Route::middleware(['admin'])->group(function(){
         return view('dashboard');
     })->name('dashboard');
 
+    // Route::prefix('admin')->group(function () {
+        
+    // });
     //Categorias
     Route::get('/admin/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
     Route::get('/admin/categoria/create', [ProdutoController::class, 'create'])->name('categoria.create');
