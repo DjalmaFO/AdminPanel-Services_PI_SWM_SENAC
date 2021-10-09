@@ -22,8 +22,7 @@ class CreateInfoUsersTable extends Migration
             $table->string('bairro')->nullable();
             $table->string('cidade')->nullable();
             $table->string('estado')->nullable();
-            $table->string('estado')->nullable();
-            $table->tesxt('img_user')->nullable();
+            $table->text('img_user')->nullable();
             $table->integer('id_user')->references('users')->on('id');
             $table->timestamps();
         });
