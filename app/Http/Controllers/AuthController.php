@@ -85,6 +85,6 @@ class AuthController extends Controller
     }
 
     public function perfil(){
-        return \view('users.perfil')->with('usuario', \auth()->user());
+        return \view('users.perfil.perfil')->with('usuario', \auth()->user());
     }
 }

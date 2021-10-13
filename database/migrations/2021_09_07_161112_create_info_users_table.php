@@ -15,6 +15,7 @@ class CreateInfoUsersTable extends Migration
     {
         Schema::create('info_users', function (Blueprint $table) {
             $table->id();
+            $table->text('sobrenome')->nullable();
             $table->string('cep')->nullable();
             $table->text('endereco')->nullable();
             $table->string('numero')->nullable();
