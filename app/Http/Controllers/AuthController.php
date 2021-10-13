@@ -83,8 +83,4 @@ class AuthController extends Controller
 
         return \redirect()->route('dashboard');
     }
-
-    public function perfil(){
-        return \view('users.perfil.perfil')->with('usuario', \auth()->user());
-    }
 }

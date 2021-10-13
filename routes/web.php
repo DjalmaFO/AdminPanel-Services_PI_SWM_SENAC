@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\AuthController;
+use App\Models\Perfil;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +32,6 @@ Route::middleware(['admin'])->group(function(){
         return view('dashboard');
     })->name('dashboard');
 
-    // Route::prefix('admin')->group(function () {
-        
-    // });
     //Categorias
     Route::get('/admin/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
     Route::get('/admin/categoria/create', [ProdutoController::class, 'create'])->name('categoria.create');
@@ -46,5 +45,7 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/admin/produto/update/{id}', [ProdutoController::class, 'update'])->name('adm.produto.update');
     Route::get('/admin/produto/destroy/{id}', [ProdutoController::class, 'destroy'])->name('adm.produto.destroy');
 
-    Route::get('/perfil', [AuthController::class, 'perfil'])->name('perfil');
+    Route::get('/admin/perfil', [PerfilController::class, 'index'])->name('perfil');
+    Route::get('/admin/perfil/edit', [PerfilController::class, 'edit'])->name('edit.perfil');
+    Route::post('/admin/perfil/update', [PerfilController::class, 'update'])->name('update.perfil');
 });

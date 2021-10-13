@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\InfoUser;
 
 class User extends Authenticatable
 {
@@ -75,5 +76,9 @@ class User extends Authenticatable
         } else {
             return \false;
         }
+    }
+
+    public function perfil(){
+        return $this->hasOne(InfoUser::class, 'id_user', 'id');
     }
 }

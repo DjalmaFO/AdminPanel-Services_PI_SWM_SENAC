@@ -3,10 +3,16 @@
     <div class="row justify-content-center">
         <h1 class="text-center">Edição de Perfil</h1>
     </div>
-    <form method="POST" action="{{ Route('adm.perfil.update', $user->id) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('update.perfil') }}" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center mt-3">
-            <img class="col-lg-2 col-md-2 col-sm-3 col-xs-4" src="{{ asset('storage/' . $info->img_user) }}"
+            <img class="col-lg-2 col-md-2 col-sm-3 col-xs-4"
+            @if (sizeOf($info) > 0)
+            src="{{ asset('storage/' . $info->img_user) }}"
+
+            @else
+                src="#"
+            @endif
             alt="Imagem do usuário {{ $user->name }}">
         </div>
         <div class="form-group">
@@ -15,40 +21,65 @@
         </div>
         <div class="form-group">
             <span class="form-label">Sobrenome</span>
-            <input type="text" name="sobrenome" class="form-control" value="{{ $info->sobrenome }}">
+            <input type="text" name="sobrenome" class="form-control"
+            @if (sizeOf($info) > 0)
+                value="{{ $info->sobrenome }}"
+            @endif
+            >
         </div>
         <div class="form-group">
             <span class="form-label">CEP</span>
-            <textarea class="form-control" name="cep">{{ $info->cep }}</textarea>
+            <input type="text" name="cep" class="form-control"
+            @if (sizeOf($info) > 0)
+                value="{{ $info->cep }}"
+            @endif
+            >
         </div>
         <div class="form-group">
             <span class="form-label">Endereço</span>
-            <input type="text" class="form-control" name="endereco">{{ $info->endereco }}>
+            <input type="text" name="endereco" class="form-control"
+            @if (sizeOf($info) > 0)
+                value="{{ $info->endereco }}"
+            @endif
+            >
         </div>
         <div class="form-group">
             <span class="form-label">Numero</span>
-            <input type="text" name="numero" value="{{ $info->numero }}"
-                class="form-control">
+            <input type="text" name="numero" class="form-control"
+            @if (sizeOf($info) > 0)
+                value="{{ $info->numero }}"
+            @endif
+            >
         </div>
         <div class="form-group">
             <span class="form-label">Complemento</span>
             <input type="text" name="complemento" class="form-control"
-                value="{{ $info->complemento }}">
+            @if (sizeOf($info) > 0)
+                value="{{ $info->complemento }}"
+            @endif>
         </div>
         <div class="form-group">
             <span class="form-label">Bairro</span>
             <input type="text" name="bairro" class="form-control"
-                value="{{ $info->bairro }}">
+            @if (sizeOf($info) > 0)
+                value="{{ $info->bairro }}"
+            @endif
+            >
         </div>
         <div class="form-group">
             <span class="form-label">Cidade</span>
             <input type="text" name="cidade" class="form-control"
-                value="{{ $info->cidade }}">
+            @if (sizeOf($info) > 0)
+                value="{{ $info->cidade }}"
+            @endif
+            >
         </div>
         <div class="form-group">
             <span class="form-label">Estado</span>
             <input type="text" name="estado" class="form-control"
-                value="{{ $info->estado }}">
+            @if (sizeOf($info) > 0)
+                value="{{ $info->estado }}"
+            @endif>
         </div>
         <div class="form-group">
             <label for="img_user" class="form-label">Alterar Imagem Usuário</span>
