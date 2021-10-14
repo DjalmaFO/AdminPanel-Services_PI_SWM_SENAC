@@ -35,10 +35,11 @@ Route::middleware(['admin'])->group(function(){
     //Categorias
     Route::get('/admin/categoria', [CategoriaController::class, 'index'])->name('categoria.index');
     Route::get('/admin/categoria/create', [CategoriaController::class, 'create'])->name('categoria.create');
+    Route::get('/admin/categoria/show/{id}', [CategoriaController::class, 'show'])->name('categoria.show');
     Route::post('/admin/categoria/store', [CategoriaController::class, 'store'])->name('categoria.store');
     Route::get('/admin/categoria/edit/{id}', [CategoriaController::class, 'edit'])->name('categoria.edit');
-    Route::delete('/admin/categoria/destroy/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
-    Route::put('/admin/categoria/update', [CategoriaController::class, 'update'])->name('categoria.update');
+    Route::post('/admin/categoria/update/{id}', [CategoriaController::class, 'update'])->name('categoria.update');
+    Route::post('/admin/categoria/destroy/{id}', [CategoriaController::class, 'destroy'])->name('categoria.destroy');
 
 
     //Produtos
