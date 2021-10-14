@@ -9,12 +9,11 @@ use App\Models\User;
 
 class PerfilController extends Controller
 {
-
     public function index()
     {
         $user = \auth()->user();
-        $info = $user->perfil()->get();
-        return \view('users.perfil.perfil')->with(['user' => $user, 'info' => $info]);
+        $infoAtual = InfoUser::where('id_user', $user->id)->first();
+        return \view('users.perfil.perfil')->with(['user' => $user, 'info' => $infoAtual]);
     }
 
     /**
@@ -51,14 +50,13 @@ class PerfilController extends Controller
     public function edit(Perfil $perfil)
     {
         $user = \auth()->user();
-        $info = $user->perfil()->get();
-        return \view('users.perfil.edit')->with(['user' => $user, 'info' => $info]);
+        $infoAtual = InfoUser::where('id_user', $user->id)->first();
+        return \view('users.perfil.edit')->with(['user' => $user, 'info' => $infoAtual]);
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $idUser)
     {
-        $idUser = \auth()->user()->id;
-        $infoAtual = InfoUser::findOrFail($idUser);
+        $infoAtual = InfoUser::where('id_user', $idUser)->first();
 
         $campos = $request->validate([
             'sobrenome' => 'string',
@@ -71,7 +69,7 @@ class PerfilController extends Controller
             'estado' => 'string',
         ]);
 
-        if(\sizeof($infoAtual) == 0){
+        if(empty($infoAtual)){
             InfoUser::create([
                 'sobrenome' => $campos['sobrenome'],
                 'cep' => $campos['cep'],
@@ -113,7 +111,7 @@ class PerfilController extends Controller
         User::where('id', $idUser)->update(['name' => $request->name]);
 
 
-
+        session()->flash('success', 'Perfil atualizado com sucesso');
         return \redirect()->route('perfil');
     }
 

@@ -1,5 +1,10 @@
 @extends('layouts.dash')
 @section('corpo-dash')
+    @if (session()->has('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session()->get('success') }}
+        </div>
+    @endif
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="bg-white shadow overflow-hidden sm:rounded-lg">
         <div class="px-4 py-5 sm:px-6">
@@ -14,7 +19,7 @@
                         Nome Completo
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        @if (sizeOf($info) > 0)
+                        @if (!empty($info))
                             {{ $info->sobrenome }}
                         @else
                             {{ '-' }}
@@ -26,7 +31,7 @@
                         Endereço
                     </dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        @if (sizeOf($info) > 0)
+                        @if (!empty($info) > 0)
                             {{ $info->endereco }}
                         @else
                             {{ '-' }}

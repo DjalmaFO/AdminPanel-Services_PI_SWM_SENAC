@@ -3,11 +3,11 @@
     <div class="row justify-content-center">
         <h1 class="text-center">Edição de Perfil</h1>
     </div>
-    <form method="POST" action="{{ route('update.perfil') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ Route('update.perfil', $user->id) }}" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center mt-3">
             <img class="col-lg-2 col-md-2 col-sm-3 col-xs-4"
-            @if (sizeOf($info) > 0)
+            @if (!empty($info))
             src="{{ asset('storage/' . $info->img_user) }}"
 
             @else
@@ -22,7 +22,7 @@
         <div class="form-group">
             <span class="form-label">Sobrenome</span>
             <input type="text" name="sobrenome" class="form-control"
-            @if (sizeOf($info) > 0)
+            @if (!empty($info))
                 value="{{ $info->sobrenome }}"
             @endif
             >
@@ -30,7 +30,7 @@
         <div class="form-group">
             <span class="form-label">CEP</span>
             <input type="text" name="cep" class="form-control"
-            @if (sizeOf($info) > 0)
+            @if (!empty($info))
                 value="{{ $info->cep }}"
             @endif
             >
@@ -38,7 +38,7 @@
         <div class="form-group">
             <span class="form-label">Endereço</span>
             <input type="text" name="endereco" class="form-control"
-            @if (sizeOf($info) > 0)
+            @if (!empty($info))
                 value="{{ $info->endereco }}"
             @endif
             >
@@ -46,7 +46,7 @@
         <div class="form-group">
             <span class="form-label">Numero</span>
             <input type="text" name="numero" class="form-control"
-            @if (sizeOf($info) > 0)
+            @if (!empty($info))
                 value="{{ $info->numero }}"
             @endif
             >
@@ -54,14 +54,14 @@
         <div class="form-group">
             <span class="form-label">Complemento</span>
             <input type="text" name="complemento" class="form-control"
-            @if (sizeOf($info) > 0)
+            @if (!empty($info))
                 value="{{ $info->complemento }}"
             @endif>
         </div>
         <div class="form-group">
             <span class="form-label">Bairro</span>
             <input type="text" name="bairro" class="form-control"
-            @if (sizeOf($info) > 0)
+            @if (!empty($info))
                 value="{{ $info->bairro }}"
             @endif
             >
@@ -69,7 +69,7 @@
         <div class="form-group">
             <span class="form-label">Cidade</span>
             <input type="text" name="cidade" class="form-control"
-            @if (sizeOf($info) > 0)
+            @if (!empty($info))
                 value="{{ $info->cidade }}"
             @endif
             >
@@ -77,7 +77,7 @@
         <div class="form-group">
             <span class="form-label">Estado</span>
             <input type="text" name="estado" class="form-control"
-            @if (sizeOf($info) > 0)
+            @if (!empty($info))
                 value="{{ $info->estado }}"
             @endif>
         </div>
