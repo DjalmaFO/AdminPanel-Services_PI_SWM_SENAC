@@ -4,7 +4,7 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\AuthController;
-use App\Models\Perfil;
+use App\Http\Controllers\TbPedidoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,7 +51,12 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/admin/produto/update/{id}', [ProdutoController::class, 'update'])->name('adm.produto.update');
     Route::get('/admin/produto/destroy/{id}', [ProdutoController::class, 'destroy'])->name('adm.produto.destroy');
 
+    // Perfil Admin
     Route::get('/admin/perfil', [PerfilController::class, 'index'])->name('perfil');
     Route::get('/admin/perfil/edit', [PerfilController::class, 'edit'])->name('edit.perfil');
     Route::post('/admin/perfil/update/{id}', [PerfilController::class, 'update'])->name('update.perfil');
+
+    //Pedidos
+    Route::get('/admin/pedidos/{status}', [TbPedidoController::class, 'index'])->name('adm.pedidos');
+    Route::get('/admin/pedidos/show/{id}', [TbPedidoController::class, 'show'])->name('adm.pedidos.show');
 });

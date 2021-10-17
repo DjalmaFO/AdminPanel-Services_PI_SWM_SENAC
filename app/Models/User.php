@@ -77,4 +77,8 @@ class User extends Authenticatable
             return \false;
         }
     }
+
+    public function perfil(){
+        return $this->hasOne(InfoUser::class, 'id_user', 'id');
+    }
 }

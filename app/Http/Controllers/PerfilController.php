@@ -12,7 +12,7 @@ class PerfilController extends Controller
     public function index()
     {
         $user = \auth()->user();
-        $infoAtual = InfoUser::where('id_user', $user->id)->first();
+        $infoAtual = $user->perfil()->first();
         return \view('users.perfil.perfil')->with(['user' => $user, 'info' => $infoAtual]);
     }
 
@@ -50,7 +50,7 @@ class PerfilController extends Controller
     public function edit(Perfil $perfil)
     {
         $user = \auth()->user();
-        $infoAtual = InfoUser::where('id_user', $user->id)->first();
+        $infoAtual = $user->perfil()->first();
         return \view('users.perfil.edit')->with(['user' => $user, 'info' => $infoAtual]);
     }
 

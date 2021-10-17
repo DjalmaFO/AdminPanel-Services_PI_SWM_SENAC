@@ -20,6 +20,7 @@
     <link href="{{asset('tailwind.css')}}" rel="stylesheet">
     <!-- Custom styles for this template-->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/login.css')}}">
 
 </head>
 
@@ -33,8 +34,12 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
+                <div class="sidebar-brand-icon rotate-n-15 img_user">
+                    @if (!empty(auth()->user()->perfil()->get()))
+                        <img src="{{asset('storage/'.auth()->user()->perfil()->first()->img_user)}}" alt="{{'imagem do usuário '.auth()->user()->name}} ">
+                    @else
                     <i class="fab fa-wpbeginner"></i>
+                    @endif
                 </div>
                 <div class="sidebar-brand-text mx-3">Geek Style <sup>1.0</sup></div>
             </a>
@@ -122,15 +127,14 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Novos</a>
-                        <a class="collapse-item" href="#">Entregues</a>
-                        <a class="collapse-item" href="#">Em Processo</a>
-                        <a class="collapse-item" href="#">Todos</a>
+                        <a class="collapse-item" href="{{route('adm.pedidos', "N")}}">Novos</a>
+                        <a class="collapse-item" href="{{route('adm.pedidos', "E")}}">Entregues</a>
+                        <a class="collapse-item" href="{{route('adm.pedidos', "T")}}">Todos</a>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Charts -->
+            {{-- <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
@@ -142,7 +146,7 @@
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
-            </li>
+            </li> --}}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

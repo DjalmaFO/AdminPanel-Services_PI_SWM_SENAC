@@ -16,7 +16,7 @@ class CreateTbPedidosTable extends Migration
         Schema::create('tb_pedidos', function (Blueprint $table) {
             $table->id();
             $table->integer('id_user')->references('users')->on('id');
-            $table->string('status')->default('P'); // Pendente
+            $table->string('status')->default('N'); // Novo
             $table->string('observacao')->nullable();
             $table->timestamps();
         });
