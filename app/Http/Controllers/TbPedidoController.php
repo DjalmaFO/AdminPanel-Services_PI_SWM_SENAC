@@ -18,9 +18,9 @@ class TbPedidoController extends Controller
     {
         $pedidos = '';
         $query = "
-            select p.id id, 
-            coalesce(p.observacao, ' ') observacao, 
-            case 
+            select p.id id,
+            coalesce(p.observacao, ' ') observacao,
+            case
                 when p.status = 'C' then 'Cancelado'
                 when p.status = 'N' then 'Novo'
                 when p.status = 'E' then 'Entregue'
@@ -74,7 +74,7 @@ class TbPedidoController extends Controller
         $p = TbPedido::findOrFail($idPedido);
         $cliente = User::findOrFail($p->id_user);
         $status = "";
-        
+
         $vlTotalPedido = 0;
         $produtosPedido = $p->getProdutosPedido()->get();
 
@@ -83,7 +83,7 @@ class TbPedidoController extends Controller
         foreach ($produtosPedido as $pp) {
             $produto = $pp->detalhesProdutoPedido()->first();
             $vlTotalProduto = $pp->vl_produto * $pp->qtd_produto;
-            
+
             $detProd = ([
                 'id_produto' => $produto->id,
                 'nm_produto' => $produto->nm_produto,
@@ -93,11 +93,10 @@ class TbPedidoController extends Controller
                 'qtd_produto' => $pp->qtd_produto,
                 'vl_total' => $vlTotalProduto,
             ]);
-            
+
             $vlTotalPedido += $vlTotalProduto;
-            
+
             \array_push($arrayProdutos, $detProd);
-            // \array_push($arrayProdutos, $produto);
         }
 
         switch($p->status){
@@ -106,22 +105,20 @@ class TbPedidoController extends Controller
                 break;
             case 'E':
                 $status = 'Entregue';
-            case 'C': 
+            case 'C':
                 $status = 'Cancelado';
         };
-        
+
         $arrayDetalhesPedidos = ([
             'id_pedido' => $p->id,
-            'valor_total' => $p->vlTotalPedido,
+            'valor_total' => $vlTotalPedido,
             'produtos' => $arrayProdutos,
             'status' => $status,
-            'observacao' => $p->observacao, 
+            'observacao' => $p->observacao,
             'cliente' => $cliente->name,
-            'email_cliente' => $cliente->email,
+            'email_cliente' => $cliente->email
         ]);
-
-        return view('admin.pedidos.show')->with('pedido', $arrayDetalhesPedidos);
-        // dd($arrayDetalhesPedidos);
+        return view('admin.pedidos.show')->with($arrayDetalhesPedidos);
     }
 
     /**
