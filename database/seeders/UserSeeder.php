@@ -23,5 +23,17 @@ class UserSeeder extends Seeder
             'password' => Hash::make('senha123321'),
             'nivel' => 'admin'
         ]);
+        DB::table('users')->insert([
+            'name' => 'Karina',
+            'email' => 'karina@karina.com',
+            'password' => Hash::make('karina@123'),
+            'nivel' => 'admin'
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Pedro',
+            'email' => 'pedro@pedro.com',
+            'password' => Hash::make('pedro@123'),
+            'nivel' => 'admin'
+        ]);
     }
 }

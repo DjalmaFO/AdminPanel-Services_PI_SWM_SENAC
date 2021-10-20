@@ -6,6 +6,7 @@ use App\Models\TbPedido;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Expr\List_;
 
 class TbPedidoController extends Controller
 {
@@ -109,16 +110,17 @@ class TbPedidoController extends Controller
                 $status = 'Cancelado';
         };
 
-        $arrayDetalhesPedidos = ([
+        $arrayDetalhesPedidos = array(
             'id_pedido' => $p->id,
             'valor_total' => $vlTotalPedido,
-            'produtos' => $arrayProdutos,
             'status' => $status,
+            'produtos' => $arrayProdutos,
             'observacao' => $p->observacao,
             'cliente' => $cliente->name,
             'email_cliente' => $cliente->email
-        ]);
-        return view('admin.pedidos.show')->with($arrayDetalhesPedidos);
+        );
+        return view('admin.pedidos.show')->with('pedido',$arrayDetalhesPedidos);
+    //    \dd('prod',$arrayDetalhesPedidos);
     }
 
     /**
