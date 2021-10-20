@@ -129,9 +129,11 @@ class TbPedidoController extends Controller
      * @param  \App\Models\TbPedido  $tbPedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(TbPedido $tbPedido)
+    public function edit($id)
     {
-        //
+        $p = TbPedido::findOrFail($id);
+        // return view('admin.pedidos.edit')->with('pedido', $p);
+        \dd($p);
     }
 
     /**

@@ -59,4 +59,5 @@ Route::middleware(['admin'])->group(function(){
     //Pedidos
     Route::get('/admin/pedidos/{status}', [TbPedidoController::class, 'index'])->name('adm.pedidos');
     Route::get('/admin/pedidos/show/{id}', [TbPedidoController::class, 'show'])->name('adm.pedidos.show');
+    Route::get('/admin/pedidos/edit/{id}', [TbPedidoController::class, 'edit'])->name('adm.pedidos.edit');
 });
