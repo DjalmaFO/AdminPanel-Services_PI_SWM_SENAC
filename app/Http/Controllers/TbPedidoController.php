@@ -100,14 +100,16 @@ class TbPedidoController extends Controller
             \array_push($arrayProdutos, $detProd);
         }
 
-        switch($p->status){
+        switch ($p->status) {
             case 'N':
                 $status = 'Novo';
                 break;
             case 'E':
                 $status = 'Entregue';
+                break;
             case 'C':
                 $status = 'Cancelado';
+                break;
         };
 
         $arrayDetalhesPedidos = array(
@@ -119,8 +121,8 @@ class TbPedidoController extends Controller
             'cliente' => $cliente->name,
             'email_cliente' => $cliente->email
         );
-        return view('admin.pedidos.show')->with('pedido',$arrayDetalhesPedidos);
-    //    \dd('prod',$arrayDetalhesPedidos);
+        return view('admin.pedidos.show')->with('pedido', $arrayDetalhesPedidos);
+        //    \dd('prod',$arrayDetalhesPedidos);
     }
 
     /**
@@ -132,8 +134,22 @@ class TbPedidoController extends Controller
     public function edit($id)
     {
         $p = TbPedido::findOrFail($id);
-        // return view('admin.pedidos.edit')->with('pedido', $p);
-        \dd($p);
+        $status = "";
+
+        switch ($p->status) {
+            case 'N':
+                $status = 'Novo';
+                break;
+            case 'E':
+                $status = 'Entregue';
+                break;
+            case 'C':
+                $status = 'Cancelado';
+                break;
+        };
+
+        $p->status = $status;
+        return view('admin.pedidos.edit')->with('pedido', $p);
     }
 
     /**
@@ -143,9 +159,15 @@ class TbPedidoController extends Controller
      * @param  \App\Models\TbPedido  $tbPedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TbPedido $tbPedido)
+    public function update(Request $request, $id)
     {
-        //
+        $p = TbPedido::findOrFail($id);
+
+        $p->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('adm.pedidos', 'T');
     }
 
     /**

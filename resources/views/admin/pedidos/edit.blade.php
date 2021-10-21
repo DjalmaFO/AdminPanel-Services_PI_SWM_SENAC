@@ -9,7 +9,7 @@
         </div>
         <div class="row">
             <label for="id_categoria">Categoria</label>
-            <select name="status" id="status">
+            <select name="status" id="status" class="form-control">
                 <option selected value="{{ $pedido->status }}">{{ $pedido->status }}</option>
                 <option value="C">Cancelado</option>
                 <option value="E">Entregue</option>
@@ -21,7 +21,7 @@
                 <button type="submit" class="btn btn-success btn-md">Salvar</button>
             </div>
             <div class="text-center">
-                <a href="{{ route('adm.pedidos.index') }}" class="btn btn-warning btn-md">Cancelar</a>
+                <a href="{{ route('adm.pedidos', "") }}" class="btn btn-warning btn-md">Cancelar</a>
             </div>
         </div>
     </form>

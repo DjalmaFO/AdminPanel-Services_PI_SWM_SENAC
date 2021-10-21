@@ -28,7 +28,7 @@
                 value="{{ $produto->qtd_produto }}">
         </div>
         <label for="id_categoria">Categoria</label>
-        <select name="id_categoria" id="id_categoria">
+        <select name="id_categoria" id="id_categoria" class="form-control">
             <option selected value="{{ $categoria->id }}">{{ $categoria->nm_categoria }}</option>
             @foreach ($categorias as $c)
                 <option value="{{ $c->id }}">{{ $c->nm_categoria }}</option>

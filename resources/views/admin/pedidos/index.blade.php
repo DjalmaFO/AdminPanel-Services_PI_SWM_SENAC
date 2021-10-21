@@ -33,7 +33,7 @@
 
                             <td>
                                 <a href="{{route('adm.pedidos.show', $p->id)}}" class="btn btn-sm btn-success">Detalhar</a>
-                                <a href="#" class="btn btn-sm btn-warning">Alterar</a>
+                                <a href="{{route('adm.pedidos.edit', $p->id)}}" class="btn btn-sm btn-warning">Alterar</a>
                                 <a href="#" class="btn btn-sm btn-danger">Cancelar</a>
                             </td>
                         </tr>

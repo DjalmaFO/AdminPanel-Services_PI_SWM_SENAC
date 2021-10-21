@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\InfoUser;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -82,5 +83,72 @@ class AuthController extends Controller
         $user->createToken('myapptoken')->plainTextToken;
 
         return \redirect()->route('dashboard');
+    }
+
+    public function perfil(){
+        $user = \auth()->user();
+        $infoAtual = $user->perfil()->first();
+
+        return response()->json(['user' => $user, 'info' => $infoAtual], 200);
+    }
+
+    public function updatePerfil(Request $request){
+        $user = auth()->user();
+        $infoAtual = InfoUser::where('id_user', $user->id)->first();
+
+        $campos = $request->validate([
+            'sobrenome' => 'string',
+            'cep' => 'string|size:8',
+            'endereco' => 'string',
+            'numero' => 'string',
+            'complemento' => 'string',
+            'bairro' => 'string',
+            'cidade' => 'string',
+            'estado' => 'string',
+        ]);
+
+        if(empty($infoAtual)){
+            InfoUser::create([
+                'sobrenome' => $campos['sobrenome'],
+                'cep' => $campos['cep'],
+                'endereco' => $campos['endereco'],
+                'numero' => $campos['numero'],
+                'complemento' => $campos['complemento'],
+                'bairro' => $campos['bairro'],
+                'cidade' => $campos['cidade'],
+                'estado' => $campos['estado'],
+                'id_user' => $user->id,
+            ]);
+        } else {
+            InfoUser::where('id_user', $user->id)->update([
+                'sobrenome' => $campos['sobrenome'],
+                'cep' => $campos['cep'],
+                'endereco' => $campos['endereco'],
+                'numero' => $campos['numero'],
+                'complemento' => $campos['complemento'],
+                'bairro' => $campos['bairro'],
+                'cidade' => $campos['cidade'],
+                'estado' => $campos['estado'],
+            ]);
+        }
+
+
+        if ($request->hasFile('img_user') && $request->file('img_user')->isValid()) {
+            $caminhoImagem = $request->file('img_user')->store('img/users');
+
+            InfoUser::where('id_user', $user->id)->update([
+                'img_user' => $caminhoImagem,
+            ]);
+        }
+
+        //atualiza o nome do Usuário
+        $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        User::where('id', $user->id)->update(['name' => $request->name]);
+
+
+        return response()->json(['msg' => 'Perfil atualizado com sucesso'], 200);
     }
 }
