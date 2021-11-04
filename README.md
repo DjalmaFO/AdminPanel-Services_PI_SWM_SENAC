@@ -23,7 +23,7 @@
 - php artisan migrate
 - php artisan db:seed --class=UserSeeder
 - php artisan serve
-- **Atenção** somente se necessário (execute php artisan key:generate)
+- **Atenção** somente após clonar o repositorio e gerar o novo _.env_ (execute php artisan key:generate)
 
 ### Possíveis problemas
 - Artisan não funciona: execute o comando **_composer update --no-scripts_**  
