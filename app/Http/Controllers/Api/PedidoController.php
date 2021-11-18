@@ -72,7 +72,7 @@ class PedidoController extends Controller
         $produtosPedido =  $carrinho->getProdutosCarrinho()->get();
 
         if(\sizeof($produtosPedido) == 0){
-            return \response()->json(['msg', 'Não há produtos no carrinho'], 200);
+            return \response()->json(['msg' => 'Não há produtos no carrinho', 'numero_pedido' => 0], 200);
         }
 
         $pedido = TbPedido::create([

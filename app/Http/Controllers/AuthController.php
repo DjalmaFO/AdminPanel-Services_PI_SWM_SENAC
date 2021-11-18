@@ -26,13 +26,13 @@ class AuthController extends Controller
 
         $token = $user->createToken('myapptoken')->plainTextToken;
 
-        return response()->json(['nome' => $user->nm_user, 'token' => $token], 201);
+        return response()->json(['nome' => $user->name, 'token' => $token], 201);
     }
 
     public function logout(Request $request){
         auth()->user()->tokens()->delete();
 
-        return response()->json([ 'message' => 'Desconectado'], 200);
+        return response()->json([ 'msg' => 'Desconectado'], 200);
     }
 
     public function sair(Request $request){
