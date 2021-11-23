@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categoria;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,8 +13,24 @@ class ProdutoController extends Controller
     public function index()
     {
         $produtos = Produto::all();
+        $arrayProdutos = [];
+        foreach($produtos as $p ){
+            $categoria = Categoria::findOrFail($p->id_categoria);
+            $prod = [
+                'nm_produto' => $p->nm_produto,
+                'id' => $p->id,
+                'desc_produto' => $p->desc_produto,
+                'vl_produto' => $p->vl_produto,
+                'qtd_produto' => $p->qtd_produto,
+                'id_categoria' => $p->id_categoria,
+                'img_produto' => $p->img_produto,
+                'nm_categoria' => $categoria->nm_categoria,
+            ];
 
-        return response()->json($produtos, 200);
+            array_push($arrayProdutos, $prod);
+        };
+
+        return response()->json($arrayProdutos, 200);
     }
 
     public function store(Request $request)
