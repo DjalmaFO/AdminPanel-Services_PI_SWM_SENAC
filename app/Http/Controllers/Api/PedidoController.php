@@ -30,6 +30,19 @@ class PedidoController extends Controller
             $idPedido = $p->id;
             $vlTotalPedido = 0;
             $produtosPedido = $p->getProdutosPedido()->get();
+            $status = '';
+
+            switch ($p->status) {
+                case 'N':
+                    $status = 'Pendente';
+                    break;
+                case 'E':
+                    $status = 'Entregue';
+                    break;
+                case 'C':
+                    $status = 'Cancelado';
+                    break;
+            };
 
 
             $arrayProdutos = [];
@@ -57,6 +70,7 @@ class PedidoController extends Controller
                 'id_pedido' => $idPedido,
                 'vl_total' => $vlTotalPedido,
                 'produtos' => $arrayProdutos,
+                'status' => $status,
             ]);
         }
 
