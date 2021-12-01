@@ -33,10 +33,13 @@
                         <td>{{$produto->vl_produto}}</td>
                         <td>{{$produto->qtd_produto}}</td>
 
-                        <td>
+                        <td class="row">
                             <a href="{{ Route('adm.produto.show', $produto->id) }}" class="btn btn-sm btn-success">Visualizar</a>
                             <a href="{{ Route('adm.produto.edit', $produto->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                            <a href="#" onclick="remover('{{ Route('adm.produto.destroy', $produto->id) }}');" class="btn btn-sm btn-danger">Apagar</a>
+                            <form action="{{ route('adm.produto.destroy', $produto->id) }}" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-sm btn-danger">Apagar</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -49,7 +49,7 @@ Route::middleware(['admin'])->group(function(){
     Route::post('/admin/produto/store', [ProdutoController::class, 'store'])->name('adm.produto.store');
     Route::get('/admin/produto/edit/{id}', [ProdutoController::class, 'edit'])->name('adm.produto.edit');
     Route::post('/admin/produto/update/{id}', [ProdutoController::class, 'update'])->name('adm.produto.update');
-    Route::get('/admin/produto/destroy/{id}', [ProdutoController::class, 'destroy'])->name('adm.produto.destroy');
+    Route::post('/admin/produto/destroy/{id}', [ProdutoController::class, 'destroy'])->name('adm.produto.destroy');
 
     // Perfil Admin
     Route::get('/admin/perfil', [PerfilController::class, 'index'])->name('perfil');
