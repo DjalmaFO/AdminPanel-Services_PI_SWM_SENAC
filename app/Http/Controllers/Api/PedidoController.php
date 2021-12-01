@@ -74,7 +74,7 @@ class PedidoController extends Controller
             ]);
         }
 
-        return \response()->json(['pedidos' =>$arrayDetalhesPedidos], 200);
+        return \response()->json($arrayDetalhesPedidos, 200);
     }
 
 
